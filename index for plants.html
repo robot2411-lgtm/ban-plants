@@ -1,0 +1,2553 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ฐานข้อมูลพรรณไม้ในพื้นที่ปกปัก — เขตตำบลบ้านเดื่อและตำบลหนองข่า</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf6f8;
+      --surface: #ffffff;
+      --pink-card: #fce4f1;
+      --pink-card-soft: #fdf0f7;
+      --pink-border: #eabdd5;
+      --pink-bullet: #df699b;
+      --border: #e6dce2;
+      --ink: #22181e;
+      --muted: #6e5a65;
+      --brand: #b8336a;
+      --brand-hover: #992656;
+      --brand-ink: #ffffff;
+      --accent-soft: #f7dce9;
+      --radius: 14px;
+      --radius-sm: 8px;
+      --shadow: 0 2px 8px rgba(45, 18, 33, 0.06), 0 1px 2px rgba(45, 18, 33, 0.04);
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --font: "Sarabun", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Tahoma, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.65;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Header Shell */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .header-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: var(--space-4) var(--space-6);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      text-align: left;
+      font: inherit;
+      color: inherit;
+    }
+
+    .brand-group:focus-visible {
+      outline: 2px solid var(--brand);
+      outline-offset: 4px;
+      border-radius: var(--radius-sm);
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      border: 1px solid var(--pink-border);
+      color: var(--brand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .site-title {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--ink);
+    }
+
+    .site-subtitle {
+      margin: 0;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: var(--space-6);
+    }
+
+    /* Buttons & Inputs */
+    .btn {
+      font: inherit;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
+    }
+
+    .btn-primary {
+      background: var(--brand);
+      color: var(--brand-ink);
+    }
+
+    .btn-primary:hover {
+      background: var(--brand-hover);
+    }
+
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--ink);
+      border-color: var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--pink-card-soft);
+      border-color: var(--pink-border);
+    }
+
+    .btn-sm {
+      padding: 5px 10px;
+      font-size: 0.85rem;
+    }
+
+    .btn-danger {
+      background: var(--surface);
+      color: #b42318;
+      border-color: #fecdca;
+    }
+
+    .btn-danger:hover {
+      background: #fef3f2;
+      border-color: #fda29b;
+    }
+
+    .input,
+    .select,
+    .textarea {
+      font: inherit;
+      font-size: 0.95rem;
+      color: var(--ink);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 9px 12px;
+      width: 100%;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .input:focus,
+    .select:focus,
+    .textarea:focus {
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(184, 51, 106, 0.14);
+    }
+
+    .textarea {
+      min-height: 76px;
+      resize: vertical;
+      line-height: 1.55;
+    }
+
+    /* Toolbar & Base URL Config */
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .base-url-bar {
+      padding: var(--space-4) var(--space-5);
+      margin-bottom: var(--space-4);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-3);
+      background: var(--pink-card-soft);
+      border-color: var(--pink-border);
+    }
+
+    .base-url-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink);
+      flex-shrink: 0;
+    }
+
+    .base-url-input-wrap {
+      flex: 1 1 280px;
+      display: flex;
+      gap: var(--space-2);
+    }
+
+    .base-url-hint {
+      width: 100%;
+      margin: 0;
+      font-size: 0.825rem;
+      color: var(--muted);
+    }
+
+    .toolbar {
+      padding: var(--space-4) var(--space-5);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .search-wrap {
+      flex: 1 1 260px;
+      position: relative;
+    }
+
+    .filter-wrap {
+      flex: 0 1 240px;
+      min-width: 190px;
+    }
+
+    /* Data Table */
+    .table-scroll {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    thead th {
+      background: #faf4f7;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.875rem;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    thead th.sortable {
+      cursor: pointer;
+    }
+
+    thead th.sortable:hover {
+      color: var(--brand);
+    }
+
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+      font-size: 0.95rem;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr.plant-row {
+      cursor: pointer;
+      transition: background-color 0.12s ease;
+    }
+
+    tbody tr.plant-row:hover {
+      background: var(--pink-card-soft);
+    }
+
+    .col-num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      width: 68px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .sci-text {
+      font-style: italic;
+      color: var(--ink);
+    }
+
+    .row-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: var(--space-2);
+    }
+
+    .empty-state {
+      padding: var(--space-8) var(--space-6);
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* Detail View (Matches Pink Reference Layout IMG_2850.png) */
+    .detail-wrapper {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .detail-topbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+
+    .nav-prev-next {
+      display: flex;
+      gap: var(--space-2);
+    }
+
+    /* Dedicated Plant URL Bar */
+    .plant-link-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: var(--space-3) var(--space-4);
+      margin-bottom: var(--space-4);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-3);
+      box-shadow: var(--shadow);
+    }
+
+    .plant-link-label {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--brand);
+      flex-shrink: 0;
+    }
+
+    .plant-link-code {
+      flex: 1 1 220px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.85rem;
+      background: #f8f4f6;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 10px;
+      color: var(--ink);
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    /* Pink Botanical Sheet (Reference: IMG_2850.png) */
+    .pink-sheet {
+      background: var(--pink-card);
+      border: 1px solid var(--pink-border);
+      border-radius: 18px;
+      padding: var(--space-6);
+      box-shadow: var(--shadow);
+      color: var(--ink);
+    }
+
+    .sheet-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-3);
+      margin-bottom: var(--space-3);
+    }
+
+    .sheet-title {
+      margin: 0;
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--ink);
+    }
+
+    .sheet-meta {
+      padding: var(--space-2) 0 var(--space-3);
+      margin-bottom: var(--space-4);
+      border-top: 1px solid rgba(145, 85, 115, 0.2);
+      border-bottom: 1px solid rgba(145, 85, 115, 0.2);
+      font-size: 0.9rem;
+      color: #6b4e5d;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Photo Section inside Plant Page */
+    .photo-section {
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid var(--pink-border);
+      border-radius: 12px;
+      padding: var(--space-4);
+      margin-bottom: var(--space-5);
+    }
+
+    .photo-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-2);
+      margin-bottom: var(--space-3);
+    }
+
+    .photo-heading {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .photo-empty {
+      border: 1.5px dashed var(--pink-border);
+      border-radius: 10px;
+      padding: var(--space-6) var(--space-4);
+      text-align: center;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.5);
+      font-size: 0.925rem;
+    }
+
+    .photo-stage {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #ffffff;
+      border: 1px solid var(--pink-border);
+      max-height: 440px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photo-stage img {
+      display: block;
+      max-width: 100%;
+      max-height: 438px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .photo-stage-actions {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      gap: 6px;
+    }
+
+    .photo-thumbs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-top: var(--space-3);
+    }
+
+    .thumb-btn {
+      width: 68px;
+      height: 68px;
+      padding: 0;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      overflow: hidden;
+      cursor: pointer;
+      background: #fff;
+    }
+
+    .thumb-btn.active {
+      border-color: var(--brand);
+    }
+
+    .thumb-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hidden-file-input {
+      display: none;
+    }
+
+    /* Pink Reference Fields Layout */
+    .kv-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: var(--space-4);
+    }
+
+    .kv-line {
+      font-size: 1.0625rem;
+      line-height: 1.6;
+    }
+
+    .kv-label {
+      font-weight: 700;
+      margin-right: 10px;
+      color: var(--ink);
+    }
+
+    .kv-val-upper {
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .section-block {
+      margin-top: var(--space-4);
+    }
+
+    .section-heading {
+      margin: 0 0 8px;
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .pink-bullets {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pink-bullets li {
+      position: relative;
+      padding-left: 24px;
+      font-size: 1.04rem;
+      line-height: 1.65;
+    }
+
+    .pink-bullets li::before {
+      content: "";
+      position: absolute;
+      left: 2px;
+      top: 10px;
+      width: 11px;
+      height: 7px;
+      background: var(--pink-bullet);
+      border-radius: 1px;
+    }
+
+    .inline-section-line {
+      margin-top: var(--space-4);
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+
+    .unfilled-text {
+      color: #7c5c6c;
+      font-style: italic;
+      font-size: 0.95rem;
+    }
+
+    /* Inline Edit Form */
+    .edit-form {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--pink-border);
+      border-radius: 12px;
+      padding: var(--space-5);
+      margin-top: var(--space-3);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--space-4);
+      margin-bottom: var(--space-4);
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: var(--space-3);
+    }
+
+    .form-field label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: var(--space-2);
+      margin-top: var(--space-4);
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: var(--space-4);
+      }
+      .header-inner {
+        padding: var(--space-3) var(--space-4);
+      }
+      .pink-sheet {
+        padding: var(--space-4);
+      }
+      .sheet-title {
+        font-size: 1.45rem;
+      }
+      thead th,
+      tbody td {
+        padding: 10px 12px;
+      }
+    }
+  </style>
+<style data-link-removed-style>a[data-link-removed],a[href*="zPythonSafez"]:not([onclick]){pointer-events:none!important;cursor:default!important;opacity:.6}</style></head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button type="button" class="brand-group" id="homeBrandBtn" aria-label="กลับหน้าหลักฐานข้อมูลพรรณไม้">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+            <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+          </svg>
+        </span>
+        <div>
+          <h1 class="site-title">ฐานข้อมูลพรรณไม้ในพื้นที่ปกปัก</h1>
+          <p class="site-subtitle">เขตตำบลบ้านเดื่อและตำบลหนองข่า</p>
+        </div>
+      </button>
+      <div id="headerRightSlot"></div>
+    </div>
+  </header>
+
+  <main class="container" id="appRoot"></main>
+
+  <script>
+    // ข้อมูลพรรณไม้ทั้ง 71 ชนิดจากตารางสำรวจ (IMG_2846 - IMG_2849)
+    // ข้อมูลลักษณะทางพฤกษศาสตร์ ถิ่นกำเนิด การกระจายพันธุ์ การขยายพันธุ์ และการใช้ประโยชน์
+    // บรรจุเฉพาะข้อมูลจริงที่สืบค้นได้จากฐานข้อมูลพฤกษศาสตร์ไทย ส่วนที่ยังไม่มีข้อมูลเว้นว่างเพื่อให้ผู้ใช้แก้ไขเพิ่มเติมได้
+    const INITIAL_PLANTS = [
+      {
+        id: 1,
+        commonName: "ไผ่โจด",
+        localName: "โจด",
+        scientificName: "Vietnamosasa ciliata A. Camus",
+        family: "Poaceae",
+        stem: "ไม้ล้มลุกหลายปีพวกไผ่ ขึ้นเป็นกอแน่นสูง 1.5–5 เมตร ลำต้นรูปทรงกระบอกสีเขียวเทา เส้นผ่านศูนย์กลางประมาณ 7–10 มิลลิเมตร ปล้องยาว 7–10 เซนติเมตร ไม่มีหนาม แตกกิ่งตามข้อมาก",
+        leaf: "ใบเดี่ยว เรียงสลับ รูปใบหอกหรือรูปใบหอกแกมรูปแถบ กว้าง 0.8–1 เซนติเมตร ยาว 8–15 เซนติเมตร ปลายใบเรียวแหลม โคนใบเกือบกลมหรือสอบแคบ ขอบใบคายและคม",
+        flower: "ช่อดอกแบบช่อแยกแขนง ออกตามยอดของลำต้นที่ไม่มีใบซึ่งเจริญมาจากลำต้นใต้ดิน ช่อแขนงออกเป็นกระจุกตามข้อ ช่อดอกย่อยมี 6–9 ดอก",
+        fruit: "ผลแบบผลแห้งเมล็ดติด มีขนาดเล็ก หน่อมีสีเทาแกมเหลืองอ่อนหรือเขียวอมม่วง ขนาดเล็กคล้ายหน่อไผ่รวก",
+        origin: "",
+        distribution: "ภาคตะวันออกเฉียงเหนือและภาคตะวันออกของประเทศไทย พบขึ้นตามป่าเต็งรังบนพื้นที่ราบสูงหินทราย",
+        propagation: "",
+        uses: "ลำต้นใช้ทำด้ามไม้กวาด ทำรั้ว และปลูกประดับตามบ้าน"
+      },
+      {
+        id: 2,
+        commonName: "ยอป่า",
+        localName: "ยอป่า",
+        scientificName: "Morinda coreia Buch.-Ham.",
+        family: "Rubiaceae",
+        stem: "ไม้ต้นขนาดเล็กถึงขนาดกลาง ผลัดใบ สูง 4–25 เมตร เรือนยอดเป็นพุ่มกลมรี ลำต้นมักคดงอ เปลือกนอกสีน้ำตาลปนเทา แตกเป็นสะเก็ด",
+        leaf: "ใบเดี่ยว เรียงตรงข้ามสลับตั้งฉาก รูปไข่กลับ รูปไข่ หรือรูปรีแกมรูปขอบขนาน กว้าง 4–11 เซนติเมตร ยาว 8–23 เซนติเมตร ปลายใบแหลม โคนใบสอบเรียว มีหูใบอยู่ระหว่างก้านใบ",
+        flower: "ดอกช่อกระจุกแน่นทรงกลม ออกที่ซอกใบหรือปลายกิ่ง ดอกย่อยสีขาว มีกลิ่นหอม กลีบดอกเชื่อมติดกันเป็นหลอด ปลายแยกเป็น 5–6 แฉก",
+        fruit: "ผลรวม รูปกลมหรือบิดเบี้ยว ขนาดเส้นผ่านศูนย์กลาง 2–3 เซนติเมตร ผิวนอกสีเขียวเป็นปุ่มปม เมื่อแก่สีดำ เนื้อในสีขาวฉ่ำน้ำ",
+        origin: "เอเชียใต้และเอเชียตะวันออกเฉียงใต้",
+        distribution: "อินเดีย ศรีลังกา บังกลาเทศ เมียนมา ภูมิภาคอินโดจีน ในไทยพบแทบทุกภาคยกเว้นภาคใต้ ตามป่าเบญจพรรณ ป่าดิบแล้ง และป่าเต็งรัง",
+        propagation: "เพาะเมล็ด หรือปักชำกล้า",
+        uses: "ปลูกให้ร่มเงา ใบอ่อนและยอดอ่อนลวกจิ้มน้ำพริก เนื้อไม้ทำเครื่องเรือน เปลือกและรากใช้ย้อมผ้าให้สีแดง มีสรรพคุณทางสมุนไพร"
+      },
+      {
+        id: 3,
+        commonName: "เขวา",
+        localName: "เขวา",
+        scientificName: "Haldina cordifolia (Roxb.) Ridsdale",
+        family: "Rubiaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 4,
+        commonName: "ตะแบก",
+        localName: "เปือย",
+        scientificName: "Lagerstroemia floribunda Jack",
+        family: "Lythraceae",
+        stem: "ไม้ยืนต้นผลัดใบ สูง 15–30 เมตร ลำต้นเปลาตรง โคนต้นเป็นพูพอน เรือนยอดเป็นพุ่มกลม เปลือกเรียบเป็นมันสีเทาอมขาว แตกล่อนเป็นหลุมตื้นๆ ตลอดลำต้น",
+        leaf: "ใบเดี่ยว เรียงตรงข้ามหรือเกือบตรงข้าม รูปขอบขนานแกมรูปใบหอก กว้าง 5–7 เซนติเมตร ยาว 12–20 เซนติเมตร ปลายมนหรือเป็นติ่งแหลม โคนใบสอบ ใบอ่อนมีขนสั้นนุ่ม",
+        flower: "ช่อดอกแบบช่อแยกแขนง ออกตามปลายกิ่ง ดอกสีม่วงอมชมพูแล้วเปลี่ยนเป็นสีขาว กลีบดอก 6 กลีบ เกสรเพศผู้จำนวนมาก",
+        fruit: "ผลแบบผลแห้งแตก รูปรี ยาวไม่เกิน 2 เซนติเมตร เมื่อแก่แตกทางด้านบนเป็น 6 ซีก เมล็ดขนาดเล็ก มีปีกโค้งด้านบน",
+        origin: "",
+        distribution: "เมียนมา ภูมิภาคอินโดจีน และมาเลเซีย ในประเทศไทยพบเกือบทุกภาคตามป่าเบญจพรรณชื้น ป่าดงดิบ และที่ราบลุ่ม",
+        propagation: "เพาะเมล็ด",
+        uses: "ปลูกเป็นไม้ประดับ เนื้อไม้ละเอียดแข็งใช้ทำสิ่งปลูกสร้างที่รับน้ำหนัก เสา กระดานพื้น และเครื่องมือการเกษตร"
+      },
+      {
+        id: 5,
+        commonName: "รกฟ้า",
+        localName: "เชือก",
+        scientificName: "Terminalia alata Heyne ex Roth.",
+        family: "Combretacaea",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 6,
+        commonName: "มะค่าโมง",
+        localName: "มะค่า",
+        scientificName: "Afzelia xylocarpa (Kurz) Craib",
+        family: "Fabaceae",
+        stem: "ไม้ต้นขนาดใหญ่ ผลัดใบ สูง 15–30 เมตร เรือนยอดเป็นพุ่มแผ่กว้าง แตกกิ่งต่ำ ลำต้นมักเป็นครีบและมีปุ่มปม เปลือกนอกสีน้ำตาลอ่อนหรือชมพูอมน้ำตาล แตกสะเก็ดเป็นหลุมตื้นๆ",
+        leaf: "ใบประกอบแบบขนนกชั้นเดียว ปลายใบคู่ เรียงสลับ ใบย่อย 3–5 คู่ เรียงตรงข้าม รูปไข่แกมรูปขอบขนาน กว้าง 2–5 เซนติเมตร ยาว 4–9 เซนติเมตร ปลายทู่เป็นติ่งหรือเว้าตื้น โคนใบมน",
+        flower: "ช่อดอกแบบช่อแยกแขนง ออกที่ปลายกิ่งหรือซอกใบ ยาว 5–15 เซนติเมตร กลีบเลี้ยงสีเขียว 4 กลีบ กลีบดอกรูปช้อนสีชมพูอมแดง 1 กลีบ",
+        fruit: "ผลเป็นฝักแบนรูปขอบขนาน เปลือกแข็งหนาเป็นเนื้อไม้ กว้าง 7–9 เซนติเมตร ยาว 12–20 เซนติเมตร ฝักแก่สีน้ำตาลเข้มเกือบดำ แตกเป็น 2 ซีก เมล็ดสีดำเป็นมัน มีเยื่อหุ้มขั้วเมล็ดสีเหลืองสด",
+        origin: "เอเชียใต้และเอเชียตะวันออกเฉียงใต้",
+        distribution: "เมียนมาและภูมิภาคอินโดจีน ในประเทศไทยพบทุกภาคยกเว้นภาคใต้ ตามป่าเบญจพรรณและป่าดิบแล้ง",
+        propagation: "เพาะเมล็ด",
+        uses: "เนื้อไม้แข็งแรงทนทาน มีลวดลายสวยงาม ใช้ทำเสาบ้าน เครื่องเรือน เฟอร์นิเจอร์ เปลือกให้น้ำฝาดฟอกหนัง เนื้อในเมล็ดอ่อนรับประทานได้"
+      },
+      {
+        id: 7,
+        commonName: "กอกกัน",
+        localName: "อด",
+        scientificName: "Lannea coromandelica (Houtt.) Merr.",
+        family: "Anacardiaceae",
+        stem: "ไม้ต้น สูงได้ถึง 15 เมตร แยกเพศต่างต้น กิ่งแก่มีช่องอากาศ มีขนรูปดาวและขนสั้นนุ่มตามกิ่งอ่อน",
+        leaf: "ใบประกอบเรียงเวียน ยาว 10–30 เซนติเมตร ใบย่อยมี 3–7 คู่ รูปไข่หรือแกมรูปขอบขนาน ยาว 2.5–10 เซนติเมตร ปลายแหลมยาว โคนเบี้ยว",
+        flower: "ช่อดอกคล้ายช่อเชิงลดแยกแขนง ออกที่ปลายกิ่งก่อนผลิใบ ดอกสีเหลือง มักมีปื้นสีม่วงอมแดง กลีบเลี้ยงและกลีบดอกอย่างละ 4 กลีบ",
+        fruit: "ผลแบบผนังชั้นในแข็ง รูปขอบขนาน ยาว 0.8–1 เซนติเมตร เมื่อสุกสีม่วงอมแดง",
+        origin: "",
+        distribution: "อินเดีย ศรีลังกา เมียนมา จีนตอนใต้ ภูมิภาคอินโดจีน คาบสมุทรมลายู และชวา ในไทยพบทุกภาคตามป่าเต็งรัง ป่าเบญจพรรณ และป่าดิบแล้ง",
+        propagation: "",
+        uses: "มีสรรพคุณด้านสมุนไพรพื้นบ้านหลายอย่าง"
+      },
+      {
+        id: 8,
+        commonName: "ประดู่",
+        localName: "ดู่",
+        scientificName: "Pterocarpus indicus Willd.",
+        family: "Fabaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 9,
+        commonName: "แสมสาร",
+        localName: "ขี้เหล็กป่า",
+        scientificName: "Senna garrettiana (Craib) H.S.Irwin & Barneby",
+        family: "Fabaceae",
+        stem: "ไม้ต้นผลัดใบ สูง 5–10 เมตร เรือนยอดกลมทึบ เปลือกลำต้นหนาสีน้ำตาลแกมดำ แตกเป็นร่องและสะเก็ดเหลี่ยม",
+        leaf: "ใบประกอบแบบขนนกปลายคู่ เรียงเวียนสลับ ใบย่อย 6–9 คู่ เรียงตรงข้าม รูปใบหอกถึงรูปไข่กว้าง กว้าง 2–5 เซนติเมตร ยาว 5–9 เซนติเมตร ปลายเรียวแหลม โคนกลม หลังใบสีเขียวเข้มเป็นมัน",
+        flower: "ช่อดอกแยกแขนงแบบช่อกระจะตั้งขึ้น ออกที่ปลายกิ่งหรือซอกใบ ยาว 9–20 เซนติเมตร กลีบเลี้ยงและกลีบดอกอย่างละ 5 กลีบ กลีบดอกสีเหลือง",
+        fruit: "ผลเป็นฝักแบนรูปขอบขนาน กว้าง 2–4 เซนติเมตร ยาว 15–22 เซนติเมตร ผิวเรียบเกลี้ยง เมื่อแก่สีน้ำตาลแกมดำ มีเมล็ดประมาณ 20 เมล็ด",
+        origin: "",
+        distribution: "เอเชียตะวันออกเฉียงใต้ ในประเทศไทยพบตามป่าโปร่ง ป่าเบญจพรรณ และป่าเต็งรังทุกภาคยกเว้นภาคใต้",
+        propagation: "เพาะเมล็ด",
+        uses: "เนื้อไม้เหนียวทนทาน ใช้ต่อเรือ ทำเครื่องเรือน เครื่องมือเครื่องใช้ ดอกอ่อนและใบอ่อนต้มลดความขมนำมาแกงหรือจิ้มน้ำพริก แก่นใช้เป็นสมุนไพร"
+      },
+      {
+        id: 10,
+        commonName: "แดง",
+        localName: "แดง",
+        scientificName: "Xylia xylocarpa (Roxb.) Taub.",
+        family: "Fabaceae",
+        stem: "ไม้ต้นผลัดใบขนาดกลางถึงขนาดใหญ่ สูง 15–30 เมตร เปลือกสีเทาอมแดง ตกสะเก็ดเป็นแผ่นกลมบางรอบลำต้น",
+        leaf: "ใบประกอบแบบขนนกสองชั้น เรียงสลับ ใบประกอบย่อยมี 1 คู่ ใบย่อยมี 3–6 คู่ รูปรี รูปไข่ หรือรูปขอบขนาน ยาว 4–14 เซนติเมตร",
+        flower: "ช่อดอกแบบช่อกระจุกแน่นรูปทรงกลม ออกที่ปลายยอดหรือซอกใบ ดอกขนาดเล็กสีเหลืองอ่อน มีกลิ่นหอมอ่อนๆ",
+        fruit: "ผลเป็นฝักแบนแข็ง โค้งคล้ายรูปไตหรือบูมเมอแรง กว้าง 3.5–6 เซนติเมตร ยาว 12–17 เซนติเมตร ฝักแก่สีน้ำตาลอมแดง แห้งแตกอ้าออก มี 7–10 เมล็ด",
+        origin: "",
+        distribution: "เมียนมาและภูมิภาคอินโดจีน ในไทยพบตามป่าเต็งรัง ป่าเบญจพรรณ และป่าดิบแล้ง",
+        propagation: "เพาะเมล็ด",
+        uses: "เนื้อไม้แข็งเหนียว ทนทานสูง ใช้ในการก่อสร้างบ้านเรือน เครื่องมือการเกษตร เปลือกและแก่นมีสรรพคุณทางสมุนไพร"
+      },
+      {
+        id: 11,
+        commonName: "พุดผา",
+        localName: "ปัดหิน",
+        scientificName: "Gardenia saxatilis Geddes",
+        family: "Rubiaceae",
+        stem: "ไม้พุ่มผลัดใบ ลำต้นแคระแกร็น แตกกิ่งก้านต่ำไม่เป็นระเบียบ สูง 1–3 เมตร",
+        leaf: "ใบเดี่ยว ออกตรงข้ามเป็นคู่ รูปไข่กลับ ปลายมน โคนใบเว้าเล็กน้อยหรือรูปลิ่ม แผ่นใบด้านบนเกลี้ยงสีเขียวอมเหลือง ด้านล่างมีขนนุ่มปกคลุม มีหูใบร่วมระหว่างคู่ใบ",
+        flower: "ดอกเดี่ยว ออกตามปลายกิ่ง กลีบดอกสีขาวนวล มีกลิ่นหอมแรง โคนเชื่อมติดกันเป็นหลอดยาว ส่วนบนผายแยกเป็น 6 กลีบ แผ่เกยกันคล้ายรูปกังหัน",
+        fruit: "ผลสดสีเขียว รูปกลม ปลายผลมีแฉกของกลีบเลี้ยงติดทน",
+        origin: "ไทย ลาว และกัมพูชา",
+        distribution: "ลาว กัมพูชา ในไทยพบทางภาคตะวันออกเฉียงเหนือ ภาคตะวันออก และภาคกลาง ตามซอกหินบนลานภูเขาหินทรายในป่าเต็งรัง",
+        propagation: "",
+        uses: "นิยมปลูกเป็นไม้ประดับหรือไม้ดัดบอนไซ เนื้อไม้และรากใช้ในตำรับยาพื้นบ้านถอนพิษเบื่อเมา"
+      },
+      {
+        id: 12,
+        commonName: "มะค่าแต้",
+        localName: "แต้",
+        scientificName: "Sindora siamensis Teijsm. ex Miq.",
+        family: "Fabaceae",
+        stem: "ไม้ยืนต้น สูง 10–15 เมตร แตกกิ่งก้านแผ่กว้าง เรือนยอดเป็นรูปร่มหรือทรงเจดีย์ต่ำ เปลือกต้นเรียบสีเทาคล้ำ กิ่งอ่อนมีขนสีน้ำตาล",
+        leaf: "ใบประกอบแบบขนนก เรียงสลับ มีใบย่อย 3–4 คู่ รูปรีหรือรูปไข่ กว้าง 3–8 เซนติเมตร ยาว 6–15 เซนติเมตร ปลายใบเว้าตื้น โคนใบรูปลิ่ม แผ่นใบหนา",
+        flower: "ออกดอกเป็นช่อตามซอกใบหรือปลายกิ่ง ยาว 10–25 เซนติเมตร ดอกสีเหลืองแกมเขียว กลีบเลี้ยงหนา 4 กลีบ ปลายกลีบมีหนามขนาดเล็ก",
+        fruit: "",
+        origin: "",
+        distribution: "ภูมิภาคอินโดจีนจนถึงมาเลเซีย ในไทยพบตามป่าเต็งรัง ป่าเบญจพรรณแล้ง และป่าดิบแล้ง",
+        propagation: "เพาะเมล็ด และตอนกิ่ง",
+        uses: ""
+      },
+      {
+        id: 13,
+        commonName: "รัง",
+        localName: "ฮัง",
+        scientificName: "Shorea siamensis Miq.",
+        family: "Dipterocarpaceae",
+        stem: "ไม้ต้นผลัดใบขนาดกลางถึงขนาดใหญ่ สูง 10–20 เมตร เปลือกลำต้นหนาสีเทา แตกเป็นร่องและสะเก็ดหนาตามยาวลำต้น",
+        leaf: "ใบเดี่ยว เรียงสลับ รูปไข่หรือแกมรูปขอบขนาน ยาว 6.5–20 เซนติเมตร โคนใบหยักเว้าลึกคล้ายรูปหัวใจ ปลายใบมนหรือแหลม ใบอ่อนที่ผลิใหม่มีสีแดง",
+        flower: "ดอกช่อแยกแขนง ออกเหนือรอยแผลใบตามกิ่งและปลายกิ่ง ดอกย่อยสีเหลืองอ่อนหรือขาวครีม มีกลิ่นหอมอ่อน กลีบดอก 5 กลีบเรียงเวียนเป็นรูปกังหัน",
+        fruit: "ผลแห้งแข็ง รูปรีเกือบกลม ยาว 1.5–2 เซนติเมตร มีปีกยาว 3 ปีก (ยาว 5–9 เซนติเมตร) และปีกสั้น 2 ปีก ผลอ่อนปีกมีสีแดง",
+        origin: "",
+        distribution: "เมียนมา ภูมิภาคอินโดจีน และตอนบนของคาบสมุทรมลายู ในไทยพบมากตามป่าเต็งรังทั่วทุกภาค",
+        propagation: "",
+        uses: "เนื้อไม้แข็งแรงมาก ใช้ทำสิ่งปลูกสร้างที่รับน้ำหนัก เช่น พื้น รอด ตง คาน ด้ามเครื่องมือการเกษตร เปลือกต้นใช้สมานแผล"
+      },
+      {
+        id: 14,
+        commonName: "เต็ง",
+        localName: "จิก",
+        scientificName: "Shorea obtuse Wall.",
+        family: "Dipterocarpaceae",
+        stem: "ไม้ยืนต้นผลัดใบ สูง 10–30 เมตร เรือนยอดเป็นพุ่มกว้าง เปลือกสีน้ำตาลเทา แตกร่องลึกและเป็นสะเก็ดหนา มักตกชันสีเหลืองขุ่น",
+        leaf: "ใบเดี่ยว เรียงสลับ รูปรีแกมรูปขอบขนานถึงรูปไข่ กว้าง 5–7 เซนติเมตร ยาว 10–16 เซนติเมตร ปลายมนหรือแหลม โคนมน แผ่นใบหนา ใบแก่ก่อนร่วงเปลี่ยนเป็นสีเหลือง ส้ม หรือแดง",
+        flower: "ดอกช่อ ออกตามปลายกิ่งหรือง่ามใบ ดอกย่อยขนาดเล็กสีขาวนวล มีกลิ่นหอม กลีบเลี้ยงและกลีบดอกอย่างละ 5 กลีบ",
+        fruit: "ผลกลมรีถึงรูปไข่ กว้างประมาณ 0.8 เซนติเมตร ยาวประมาณ 1 เซนติเมตร มีปีกยาว 3 ปีก และปีกสั้น 2 ปีก",
+        origin: "",
+        distribution: "เมียนมา ลาว กัมพูชา เวียดนาม ในประเทศไทยพบเป็นกลุ่มใหญ่ในป่าเต็งรังและป่าเบญจพรรณทั่วทุกภาค",
+        propagation: "เพาะเมล็ด ตอนกิ่ง ปักชำ",
+        uses: "เนื้อไม้แข็งแรงทนทาน ใช้ในงานก่อสร้าง เสาบ้าน เฟอร์นิเจอร์ ชันยางใช้ผสมน้ำมันทาไม้และยาแนวเรือ เปลือกต้นใช้สมานแผล"
+      },
+      {
+        id: 15,
+        commonName: "สะเดา",
+        localName: "สะเดา",
+        scientificName: "Azadirachta indica var. siamensis valeton",
+        family: "Meliaceae",
+        stem: "ไม้ยืนต้น สูง 5–16 เมตร เปลือกต้นแตกเป็นร่องลึกตามยาว ยอดอ่อนสีน้ำตาลแดง",
+        leaf: "ใบประกอบแบบขนนก เรียงสลับ ยาว 15–35 เซนติเมตร ใบย่อย 4–7 คู่ รูปใบหอกแกมรูปเคียวเบี้ยว กว้าง 1.5–4 เซนติเมตร ยาว 4–9 เซนติเมตร โคนใบมนไม่เท่ากัน ขอบใบจักฟันเลื่อย",
+        flower: "ช่อดอกกระจุกแยกแขนง ออกที่ซอกใบหรือปลายกิ่งขณะแตกใบอ่อน ดอกสีขาวนวล มีกลิ่นหอม กลีบเลี้ยงและกลีบดอกมี 5 แฉก",
+        fruit: "ผลสดมีเมล็ดเดียว รูปทรงรีหรือรูปกระสวย ยาว 1–2 เซนติเมตร ผิวเรียบ ผลอ่อนสีเขียว เมื่อสุกสีเหลืองถึงเหลืองส้ม",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: "ยอดอ่อนและช่อดอกลวกรับประทานเป็นผักช่วยเจริญอาหาร สารสกัดจากใบและเมล็ดใช้ป้องกันกำจัดแมลงศัตรูพืชและมีสรรพคุณทางยาสมุนไพร"
+      },
+      {
+        id: 16,
+        commonName: "มะม่วงแมงวัน",
+        localName: "มะม่วงหัววัน",
+        scientificName: "Buchanania latifolia Roxb.",
+        family: "Anacardiaceae",
+        stem: "ไม้ยืนต้น สูง 8–20 เมตร ลำต้นเปลาตรง เรือนยอดเป็นพุ่มทึบ กิ่งอ่อนมีขนสีน้ำตาลแดง เปลือกต้นสีเทาแก่หรือน้ำตาลแกมดำ แตกเป็นร่องหรือสะเก็ดตามยาว",
+        leaf: "ใบเดี่ยว เรียงสลับ รูปรีหรือรูปไข่แกมรูปไข่กลับ กว้าง 5–7.5 เซนติเมตร ยาว 10–15 เซนติเมตร ปลายใบมน โคนใบสอบ เนื้อใบหนาคล้ายหนัง ท้องใบมีขนตามเส้นใบ",
+        flower: "ช่อดอกแบบช่อแยกแขนงออกที่ปลายยอด ก้านช่ออวบมีขนสีน้ำตาลแดงแน่น ดอกย่อยขนาดเล็กสีขาว กลีบเลี้ยงและกลีบดอกอย่างละ 5 กลีบ เกสรเพศผู้ 10 อัน",
+        fruit: "ผลสดแบบเมล็ดเดียวแข็ง รูปเกือบกลม ขนาด 1–1.5 เซนติเมตร ผลอ่อนสีเขียว ผลสุกสีแดงม่วงถึงดำ มี 1 เมล็ด",
+        origin: "เขตร้อนของทวีปเอเชีย (อินเดีย)",
+        distribution: "อินเดีย ศรีลังกา เนปาล บังกลาเทศ เมียนมา ไทย ลาว กัมพูชา และมาเลเซีย ในไทยพบทุกภาคตามป่าเบญจพรรณ ป่าเต็งรัง และป่าชายหาด",
+        propagation: "",
+        uses: "ผลสุกรสหวานรับประทานได้ ยอดอ่อนรับประทานเป็นผัก เนื้อไม้ทำเครื่องใช้ ลังไม้ ประตูหน้าต่าง ใบและเปลือกต้นให้สีย้อมผ้า"
+      },
+      {
+        id: 17,
+        commonName: "เสี้ยวน้อย",
+        localName: "เสี้ยว",
+        scientificName: "Bauhinia hirsuta Weinm",
+        family: "Caesalpniaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 18,
+        commonName: "พลองเหมือด",
+        localName: "เหมือดแอ",
+        scientificName: "Memecylon edule Roxb.",
+        family: "Memecylaceae",
+        stem: "ไม้ยืนต้น เปลือกแตกเป็นร่องตามยาวของลำต้น สีน้ำตาลถึงดำ",
+        leaf: "ใบเดี่ยว เนื้อใบหนา",
+        flower: "ดอกช่อ ออกเป็นกระจุกตามซอกใบ ฐานรองดอกรูปถ้วย กลีบดอกสีม่วงหรือน้ำเงินเข้ม",
+        fruit: "ผลทรงกลม ผลอ่อนสีเขียว เมื่อแก่เปลี่ยนเป็นสีม่วงเข้ม",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: "ผลมีรสฝาดหวานรับประทานได้ รากและลำต้นใช้ต้มเป็นสมุนไพรรักษาโรคกระเพาะอาหาร"
+      },
+      {
+        id: 19,
+        commonName: "ชิงชัน",
+        localName: "ชิงชัน",
+        scientificName: "Dalbergia oliveri Gamble",
+        family: "Fabaceae",
+        stem: "ไม้ยืนต้นผลัดใบขนาดกลางถึงขนาดใหญ่ สูง 15–30 เมตร เปลือกหนาสีน้ำตาลเทา กะเทาะล่อนเป็นแว่นเล็กๆ เปลือกในสีเหลือง เนื้อไม้แข็งเหนียวสีน้ำตาลอ่อนอมเหลืองมีเส้นแทรก",
+        leaf: "ใบประกอบแบบขนนก เรียงสลับ ใบย่อย 11–17 ใบ รูปไข่ถึงรูปรีแกมรูปขอบขนาน กว้าง 1–4 เซนติเมตร ยาว 4–8 เซนติเมตร ปลายใบมนทู่หรือหยักเว้าเล็กน้อย ท้องใบสีจางกว่าหลังใบ",
+        flower: "ดอกช่อเชิงประกอบ ออกตามปลายกิ่งพร้อมการผลิใบใหม่ ดอกขนาดเล็กสีขาวอมม่วง",
+        fruit: "ผลเป็นฝักแบนยาวรี รูปขอบขนาน กว้าง 3–3.5 เซนติเมตร ยาว 8–17 เซนติเมตร ตรงที่หุ้มเมล็ดนูนเป็นกระเปาะแข็ง เมล็ดรูปไตสีน้ำตาล 1–3 เมล็ด",
+        origin: "",
+        distribution: "เมียนมา ลาว และไทย พบกระจายในป่าเบญจพรรณและป่าเต็งรังทุกภาคของไทยยกเว้นภาคใต้",
+        propagation: "เพาะเมล็ด",
+        uses: "เนื้อไม้แข็งเหนียวทนทานและขัดเงาได้สวยงาม ใช้ทำเครื่องเรือน เครื่องแกะสลัก เครื่องดนตรีไทย (ขลุ่ย ซอ จะเข้ ลูกระนาด) แก่นและเปลือกใช้สมานแผลและบำรุงโลหิต"
+      },
+      {
+        id: 20,
+        commonName: "กำแพงเจ็ดชั้น",
+        localName: "ตาไก้",
+        scientificName: "Salacia chinensis L.",
+        family: "Celastraceae",
+        stem: "ไม้พุ่มรอเลื้อยหรือไม้เถาเนื้อแข็ง สูง 2–6 เมตร เปลือกลำต้นเรียบสีเทานวล เนื้อไม้เมื่อผ่าตามขวางเห็นวงปีสีน้ำตาลแดงเข้มเรียงซ้อนกัน 7–9 ชั้นชัดเจน",
+        leaf: "ใบเดี่ยว เรียงตรงข้ามเป็นคู่ รูปรี รูปไข่ หรือรูปไข่กลับ กว้าง 2–7 เซนติเมตร ยาว 4–12 เซนติเมตร ปลายแหลมหรือมน โคนสอบ ขอบใบหยักตื้น ผิวใบเรียบเป็นมัน",
+        flower: "ออกดอกเดี่ยวหรือเป็นกระจุกสั้นๆ ตามซอกใบ ดอกขนาดเล็กสีเขียวอมเหลือง กลีบดอก 5 กลีบ เกสรเพศผู้ 3 อัน",
+        fruit: "ผลค่อนข้างกลม เส้นผ่านศูนย์กลาง 1–2 เซนติเมตร เมื่อสุกสีแดงหรือแดงอมส้ม เนื้อผลรสหวาน มี 1 เมล็ด",
+        origin: "เขตร้อนชื้นของทวีปเอเชีย",
+        distribution: "จีน อินเดีย เมียนมา ศรีลังกา ภูมิภาคอินโดจีน และมาเลเซีย ในไทยพบทุกภาคตามป่าเบญจพรรณและป่าดิบแล้ง",
+        propagation: "เพาะเมล็ด",
+        uses: "ลำต้นและเถาใช้ในตำรับยาสมุนไพรไทย ต้มน้ำดื่มบำรุงโลหิต แก้ปวดเมื่อยตามร่างกาย และเป็นยาระบาย ผลสุกรับประทานได้"
+      },
+      {
+        id: 21,
+        commonName: "พลับพลา",
+        localName: "ลอมคอม",
+        scientificName: "Microcos paniculata Linn.",
+        family: "Tiliaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 22,
+        commonName: "มะขาม",
+        localName: "มะขาม",
+        scientificName: "Tamarindus indica L.",
+        family: "Fabaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 23,
+        commonName: "หมี่เหม็น",
+        localName: "หมี่",
+        scientificName: "Litsea glutinosa (Lour.) C.B.Rob.",
+        family: "Lauraceae",
+        stem: "ไม้ยืนต้นผลัดใบ สูง 5–15 เมตร แตกกิ่งก้านเป็นพุ่มกลมทึบ เปลือกลำต้นสีน้ำตาล แตกเป็นร่องตื้นตามยาว กิ่งอ่อนและยอดอ่อนมีขนละเอียด",
+        leaf: "ใบเดี่ยว เรียงสลับ มักออกเป็นกลุ่มหนาแน่นที่ปลายกิ่ง รูปรีแกมขอบขนานหรือรูปไข่กลับ กว้าง 5–10 เซนติเมตร ยาว 8–22 เซนติเมตร หลังใบสีเขียวเข้มเป็นมัน ท้องใบมีขน",
+        flower: "ดอกแยกเพศต่างต้น ออกเป็นช่อกระจุกแบบซี่ร่มที่ซอกใบและปลายกิ่ง ไม่มีกลีบดอก เกสรเพศผู้จำนวนมากสีเหลืองอ่อนปนเขียว",
+        fruit: "ผลทรงกลม ขนาด 5–7 มิลลิเมตร ผิวเรียบเป็นมัน ผลอ่อนสีเขียว เมื่อสุกสีม่วงเข้มเกือบดำ ช่อละ 3–5 ผล",
+        origin: "เอเชียใต้และเอเชียตะวันออกเฉียงใต้",
+        distribution: "อินเดีย ศรีลังกา เนปาล จีนตอนใต้ เอเชียตะวันออกเฉียงใต้ และตอนเหนือของออสเตรเลีย ในไทยพบทุกภาคตามป่าเบญจพรรณ ป่าดิบแล้ง และป่าเต็งรัง",
+        propagation: "เพาะเมล็ด",
+        uses: "ใบมีสารเมือกใช้ขยี้สระผมบำรุงเส้นผมและป้องกันรังแค เปลือกใช้ทำธูปและย้อมผ้า เนื้อไม้ใช้ก่อสร้างและทำฟืน"
+      },
+      {
+        id: 24,
+        commonName: "ตีนนก",
+        localName: "ตีนนก",
+        scientificName: "Vitex limonifolia Wall. ex. Walp.",
+        family: "Lamiaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 25,
+        commonName: "กระไดลิง",
+        localName: "บันไดลิง",
+        scientificName: "Bauhinia scandens L. var. horsfieldii (Miq.) K. et S.S. Larsen",
+        family: "Fabaceae",
+        stem: "ไม้เถาเนื้อแข็งผลัดใบขนาดใหญ่ มีมือเกาะพาดพันเรือนยอดไม้อื่น เถาแก่แบน แข็งเหนียว และโค้งไปมาเป็นลอนสม่ำเสมอคล้ายขั้นบันได",
+        leaf: "ใบเดี่ยว เรียงสลับ รูปไข่หรือรูปพัด กว้าง 5–12 เซนติเมตร ยาว 6–11 เซนติเมตร ปลายใบเว้าลึกเป็น 2 แฉก โคนใบเว้าคล้ายรูปหัวใจ เส้นใบออกจากโคน 5–7 เส้น",
+        flower: "ช่อดอกแบบช่อแยกแขนงออกที่ปลายกิ่ง ยาว 12–25 เซนติเมตร ดอกย่อยขนาดเล็กจำนวนมาก กลีบเลี้ยงรูปถ้วย กลีบดอก 5 กลีบสีขาวอมเหลือง",
+        fruit: "ผลเป็นฝักแบน รูปรีหรือรูปไข่แกมรี กว้าง 1.5–2 เซนติเมตร ยาว 3–4 เซนติเมตร ฝักแก่สีน้ำตาลแดง แห้งแล้วแตก มี 1–2 เมล็ด",
+        origin: "เขตร้อนของเอเชีย ตั้งแต่อินเดียถึงหมู่เกาะซุนดา",
+        distribution: "อินเดีย ศรีลังกา เมียนมา ภูมิภาคอินโดจีน มาเลเซีย และอินโดนีเซีย ในไทยพบเกือบทุกภาคตามป่าเบญจพรรณและป่าดิบแล้ง",
+        propagation: "เพาะเมล็ด",
+        uses: "เปลือกเถาเหนียวใช้ทำเชือก เถาแห้งคดงอเป็นชั้นใช้ตกแต่งประดับและทำงานประดิษฐ์ ใช้เป็นสมุนไพรพื้นบ้านแก้พิษไข้และแก้ปวดข้อ"
+      },
+      {
+        id: 26,
+        commonName: "ตะคร้อ",
+        localName: "ค้อ",
+        scientificName: "Schleichera oleosa (Lour.) Oken",
+        family: "Sapindaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 27,
+        commonName: "ตูมกาขาว",
+        localName: "มะตูมกา",
+        scientificName: "Strychnos nux-blanda A.W. Hill",
+        family: "Loganiaceae",
+        stem: "ไม้ต้นผลัดใบ สูง 5–15 เมตร เปลือกลำต้นเรียบสีเทาอมเหลือง ไม่มีช่องอากาศ บางครั้งมีหนามแหลมที่ซอกใบ",
+        leaf: "ใบเดี่ยว เรียงตรงข้าม รูปไข่กว้าง รูปรี หรือเกือบกลม กว้าง 8–10 เซนติเมตร ยาว 10–14 เซนติเมตร ผิวใบเรียบมันสีเขียวเข้ม มีเส้นใบออกจากโคนใบ 3–5 เส้นชัดเจน",
+        flower: "ช่อดอกกระจุกแยกแขนง ออกที่ปลายกิ่งหรือซอกใบ ดอกสีขาวแกมเขียว กลีบดอกเชื่อมติดกันเป็นหลอด ปลายแยก 5 กลีบ",
+        fruit: "ผลสด ทรงกลม เส้นผ่านศูนย์กลาง 5–8 เซนติเมตร เปลือกผลหนา เมื่อสุกสีส้มถึงแดง ภายในมีเมล็ดแบนคล้ายกระดุม 4–15 เมล็ด",
+        origin: "",
+        distribution: "อินเดีย ศรีลังกา เมียนมา และภูมิภาคอินโดจีน ในไทยพบตามป่าเต็งรัง ป่าเบญจพรรณ และป่าดิบแล้ง",
+        propagation: "",
+        uses: "ราก แก่น และใบใช้ในตำรายาพื้นบ้านแก้ปวดเมื่อย แก้ไข้ และพอกแผล"
+      },
+      {
+        id: 28,
+        commonName: "หนามแท่ง",
+        localName: "หนามแท่ง",
+        scientificName: "Catunaregam tomentosum (Kurz) Bakh. f.",
+        family: "Rubiaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 29,
+        commonName: "น้ำใจใคร่",
+        localName: "ด่างควายแว้",
+        scientificName: "Olax psittacorum (Willd.) Vahl",
+        family: "Olacaceae",
+        stem: "ไม้เถาหรือไม้พุ่มรอเลื้อย สูง 2–5 เมตร แตกกิ่งก้านมากและมักห้อยลง เปลือกต้นสีเขียวเข้มหรือขาวอมน้ำตาล กิ่งอ่อนมีขนสีขาวและมีหนามโค้งแข็งเล็กๆ",
+        leaf: "ใบเดี่ยว เรียงสลับ รูปรีหรือรูปขอบขนานแกมใบหอก ปลายใบแหลม โคนใบมน",
+        flower: "",
+        fruit: "ผลสดแบบผนังชั้นในแข็ง รูปทรงกลมหรือรูปไข่ ขนาด 0.6–1.5 เซนติเมตร โคนผลมีกลีบเลี้ยงขยายหุ้มประมาณ 2 ใน 3 ส่วน เมื่อสุกสีเหลืองอมส้ม มี 1 เมล็ด",
+        origin: "เขตร้อนชื้นของทวีปเอเชีย",
+        distribution: "อินเดีย ศรีลังกา เมียนมา จีน อินโดจีน มาเลเซีย และอินโดนีเซีย ในไทยพบทุกภาคตามป่าเต็งรัง ป่าเบญจพรรณ ป่าดิบแล้ง และมักขึ้นตามจอมปลวก",
+        propagation: "เพาะเมล็ด",
+        uses: "ยอดอ่อนและใบอ่อนใช้เป็นผักจิ้มน้ำพริกหรือใส่แกงส้ม แกงเลียง ผลสุกรับประทานได้ ลำต้น เปลือก และรากใช้เป็นสมุนไพรบำรุงกำลังและแก้ไข้"
+      },
+      {
+        id: 30,
+        commonName: "หว้า",
+        localName: "หว้า",
+        scientificName: "Syzygium cumini (L.) Skeels",
+        family: "Myrtaceae",
+        stem: "ไม้ยืนต้นขนาดกลางถึงขนาดใหญ่ ไม่ผลัดใบ สูง 10–35 เมตร เปลือกต้นค่อนข้างเรียบสีเทาอ่อนหรือน้ำตาลปนเทา เรือนยอดเป็นพุ่มกว้าง",
+        leaf: "ใบเดี่ยว เรียงตรงข้าม รูปรีหรือรูปไข่กลับ กว้าง 3–9 เซนติเมตร ยาว 8–15 เซนติเมตร ปลายเรียวแหลมสั้น โคนสอบ แผ่นใบหนาสีเขียวเข้มเป็นมัน มีจุดน้ำมันบริเวณขอบใบ",
+        flower: "ดอกช่อแยกแขนง ออกที่ซอกใบหรือปลายยอด ดอกสีขาวหรือเหลืองอ่อน ฐานรองดอกรูปกรวย กลีบเลี้ยง 4 กลีบ กลีบดอก 4 กลีบ เกสรเพศผู้จำนวนมาก",
+        fruit: "ผลสดฉ่ำน้ำ รูปรีแกมรูปไข่หรือรูปกระสวย ยาว 1.5–3 เซนติเมตร ผิวมัน ผลอ่อนสีเขียว เมื่อสุกเปลี่ยนเป็นสีม่วงแดงถึงม่วงดำ มี 1 เมล็ด",
+        origin: "เอเชียเขตร้อน ตั้งแต่อินเดียถึงเอเชียตะวันออกเฉียงใต้",
+        distribution: "อินเดีย ศรีลังกา เนปาล เมียนมา และภูมิภาคเอเชียตะวันออกเฉียงใต้ ในไทยพบทั่วไปตามป่าดิบชื้นและป่าผลัดใบ",
+        propagation: "เพาะเมล็ด",
+        uses: "ผลสุกรับประทานเป็นผลไม้หรือแปรรูปเป็นน้ำผลไม้และแยม ปลูกให้ร่มเงา เปลือกต้นใช้ย้อมผ้าให้สีชมพูอ่อน เมล็ดและเปลือกมีสรรพคุณทางสมุนไพร"
+      },
+      {
+        id: 31,
+        commonName: "พะยูง",
+        localName: "ยูง",
+        scientificName: "Dalbergia cochinchinensis Pierre",
+        family: "Fabaceae",
+        stem: "ไม้ยืนต้นขนาดใหญ่ สูง 15–25 เมตร ลำต้นเปลาตรง เรือนยอดกลมหรือรูปไข่ เปลือกต้นเรียบสีเทาและล่อนเป็นแผ่นบางๆ เนื้อไม้สีแดงอมม่วงถึงแดงเลือดหมู มีลวดลายสวยงาม",
+        leaf: "ใบประกอบแบบขนนกปลายคี่ เรียงสลับ ใบย่อย 7–9 ใบ รูปไข่แกมรูปขอบขนานหรือรูปใบหอก ปลายแหลม โคนมน แผ่นใบเหนียว ด้านบนสีเขียวเข้ม",
+        flower: "ช่อดอกแบบช่อแยกแขนง ออกตามซอกใบและปลายกิ่ง ยาว 10–20 เซนติเมตร ดอกขนาดเล็กสีขาวนวล มีกลิ่นหอมอ่อนๆ กลีบเลี้ยงรูปถ้วย กลีบดอก 5 กลีบ",
+        fruit: "ผลแบบฝักแห้ง แบนบาง รูปขอบขนาน กว้าง 1–1.2 เซนติเมตร ยาว 4–6 เซนติเมตร ฝักแก่สีน้ำตาล มีเมล็ดรูปไต 1–4 เมล็ด",
+        origin: "ไทย ลาว กัมพูชา เมียนมา และเวียดนาม",
+        distribution: "พบตามป่าดิบแล้งและป่าเบญจพรรณชื้น ในไทยพบมากทางภาคตะวันออกเฉียงเหนือและภาคตะวันออก",
+        propagation: "เพาะเมล็ด",
+        uses: "เนื้อไม้แข็งแรงทนทานและมีลวดลายงดงาม ใช้ทำเครื่องเรือน งานแกะสลัก เครื่องดนตรีไทย ใช้เป็นไม้เลี้ยงครั่ง และปลูกเป็นไม้ประดับมงคล"
+      },
+      {
+        id: 32,
+        commonName: "กระทุ่มนา",
+        localName: "กระทุ่มนา",
+        scientificName: "Mitragyna diversifolia (Wall. ex G. Don) Havil",
+        family: "Rubiaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 33,
+        commonName: "เหมือดโลด",
+        localName: "เหมือดโลด",
+        scientificName: "Aporusa villosa Lindl. Baill.",
+        family: "Euphorbiaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 34,
+        commonName: "คำรอก",
+        localName: "ตานกกด",
+        scientificName: "Ellipanthus tomentosus Kuze var. tomentosus",
+        family: "Connaraceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 35,
+        commonName: "ชำมะเลียง",
+        localName: "ขี้เถ้า",
+        scientificName: "Lepisanthes fruticosa (Roxb.)Leenh.",
+        family: "Sapindaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 36,
+        commonName: "หมักม่อ",
+        localName: "หมักม่อ",
+        scientificName: "Rothmannia wittii (Craib.) Bremek.",
+        family: "Rubiaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 37,
+        commonName: "มะม่วงป่า",
+        localName: "มะม่วงป่า",
+        scientificName: "Mangifera caloneura Kurz.",
+        family: "Anacardiaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 38,
+        commonName: "อินทนิลบก",
+        localName: "กะเลา",
+        scientificName: "Lagerstroemia macrocarpa Wall.",
+        family: "Lythraceae",
+        stem: "ไม้ต้นผลัดใบ สูง 5–20 เมตร เรือนยอดแผ่กว้าง เปลือกต้นสีเทาหรือน้ำตาลอ่อน ค่อนข้างเรียบหรือแตกเป็นร่องตื้น",
+        leaf: "ใบเดี่ยว เรียงตรงข้าม รูปขอบขนานหรือรูปไข่กลับขนาดใหญ่ กว้าง 5–18 เซนติเมตร ยาว 11–26 เซนติเมตร แผ่นใบหนาคล้ายหนัง ผิวใบทั้งสองด้านเกลี้ยงเป็นมัน",
+        flower: "ช่อดอกออกที่ปลายกิ่ง ดอกขนาดใหญ่บานเต็มที่กว้าง 7–12 เซนติเมตร กลีบดอก 6 กลีบ ขอบกลีบหยักย่น สีชมพูอมม่วงหรือม่วงสด ดอกตูมเป็นรูปลูกข่าง",
+        fruit: "ผลแห้งแตก รูปไข่หรือกลมรี ยาว 2–4 เซนติเมตร เปลือกแข็ง เมื่อแก่แตกเป็น 6 แฉก เมล็ดขนาดเล็กจำนวนมาก มีปีกบางด้านบน",
+        origin: "",
+        distribution: "อินเดียและเอเชียตะวันออกเฉียงใต้ กระจายในที่โล่งแจ้งและป่าเต็งรัง",
+        propagation: "เพาะเมล็ด และตอนกิ่ง",
+        uses: "ปลูกเป็นไม้ดอกไม้ประดับให้ร่มเงา เนื้อไม้ใช้ในการก่อสร้าง ทำเครื่องเรือน และเครื่องมือการเกษตร ใบและแก่นต้มดื่มเป็นสมุนไพร"
+      },
+      {
+        id: 39,
+        commonName: "สมอไทย",
+        localName: "ส้มมอ",
+        scientificName: "Terminalia chebula Retz.",
+        family: "Combretacaea",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 40,
+        commonName: "มะขามป้อม",
+        localName: "มะขามป้อม",
+        scientificName: "Phyllanthus emblica L.",
+        family: "Euphorbiaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 41,
+        commonName: "เล็บเหยี่ยว",
+        localName: "เล็บแมว",
+        scientificName: "Zizyphus oenoplia (L.) Mill. var. oenoplia",
+        family: "Rhamnaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 42,
+        commonName: "ลูกหยี",
+        localName: "เค็ง",
+        scientificName: "Dialium cochinchinense Pierre",
+        family: "Fabaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 43,
+        commonName: "มะเดื่ออุทุมพร",
+        localName: "มะเดื่อ",
+        scientificName: "Ficus racemosa L.",
+        family: "Moraceae",
+        stem: "ไม้ต้นขนาดกลางถึงใหญ่ สูง 10–25 เมตร ทรงพุ่มกว้างใบหนาทึบ ลำต้นมีน้ำยางสีขาว เปลือกต้นสีเทาหรือน้ำตาลปนเทา",
+        leaf: "ใบเดี่ยว เรียงสลับ รูปไข่ รูปรี หรือรูปใบหอก กว้างประมาณ 10 เซนติเมตร ยาว 7.5–20 เซนติเมตร ปลายใบแหลม โคนมน ขอบใบเรียบ",
+        flower: "ช่อดอกเกิดภายในฐานรองดอกทรงกลมคล้ายผล (syconium) ออกเป็นกระจุกตามลำต้นและกิ่งใหญ่ ดอกย่อยขนาดเล็กซ่อนอยู่ภายใน",
+        fruit: "ผลแบบมะเดื่อ ทรงกลมแป้นหรือกลมรี ขนาด 2.5–4 เซนติเมตร ออกเป็นพวงระย้าตามลำต้นและกิ่ง ผลอ่อนสีเขียว เมื่อสุกเปลี่ยนเป็นสีแดงส้มถึงแดงม่วง",
+        origin: "เขตร้อนของทวีปเอเชีย ตั้งแต่อินเดียถึงจีน เอเชียตะวันออกเฉียงใต้ และออสเตรเลีย",
+        distribution: "พบตามริมลำธารในป่าดิบชื้น ป่าดิบแล้ง และป่าเบญจพรรณทั่วไป",
+        propagation: "เพาะเมล็ด และตอนกิ่ง",
+        uses: "ปลูกให้ร่มเงาริมน้ำ ช่อดอกอ่อนรับประทานเป็นผักจิ้มหรือแกงส้ม ผลสุกรสฝาดอมหวานรับประทานได้ รากและต้นใช้เป็นสมุนไพรแก้ไข้และแก้ท้องร่วง"
+      },
+      {
+        id: 44,
+        commonName: "มะเกลือ",
+        localName: "มะเกลือ",
+        scientificName: "Diospyros mollis Griff.",
+        family: "Ebenaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 45,
+        commonName: "ไทรย้อย",
+        localName: "ไทรย้อย",
+        scientificName: "Ficus Benjamina L.",
+        family: "Moraceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 46,
+        commonName: "กระเจียน",
+        localName: "ไซเดน",
+        scientificName: "Hubera cerasoides (Roxb.) Chaowasku",
+        family: "Annonaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 47,
+        commonName: "พลวง",
+        localName: "ตองเรื่อง",
+        scientificName: "Dipterocarpus tuberculatus Roxb.",
+        family: "Dipterocarpaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 48,
+        commonName: "กระบก",
+        localName: "กระบก",
+        scientificName: "Irvingia malayana Oliv. ex A. W. Benn.",
+        family: "Irvingiaceae",
+        stem: "ไม้ยืนต้นขนาดกลางถึงขนาดใหญ่ ผลัดใบ สูง 10–30 เมตร ลำต้นเปลาตรง โคนต้นมักเป็นพูพอน เรือนยอดเป็นพุ่มแน่นทึบ เปลือกสีเทาอ่อนปนน้ำตาล",
+        leaf: "ใบเดี่ยว เรียงสลับ รูปไข่ รูปรี หรือรูปขอบขนาน กว้าง 2–9 เซนติเมตร ยาว 8–20 เซนติเมตร ผิวใบเป็นมัน มีหูใบรูปดาบโค้งม้วนหุ้มยอดอ่อนชัดเจน",
+        flower: "ช่อดอกแบบช่อแยกแขนง ออกตามซอกใบและปลายกิ่ง ดอกขนาดเล็กสีขาวอมเขียวอ่อน กลีบเลี้ยง 5 กลีบ กลีบดอก 5 กลีบ เกสรเพศผู้ 10 อัน",
+        fruit: "ผลสดรูปกลมรีหรือรูปไข่ แบนเล็กน้อยคล้ายมะม่วงขนาดเล็ก ผลอ่อนสีเขียว ผลแก่สีเหลือง เมล็ดแข็ง เนื้อในเมล็ดสีขาวมีน้ำมันและรสมัน",
+        origin: "",
+        distribution: "อินเดียถึงอินโดนีเซีย ในประเทศไทยพบทั่วทุกภาคตามป่าเบญจพรรณ ป่าเต็งรัง และป่าดิบแล้ง",
+        propagation: "เพาะเมล็ด หรือตอนกิ่ง",
+        uses: "เนื้อในเมล็ดนำมาคั่วรับประทานมีรสหวานมัน น้ำมันจากเมล็ดใช้ทำอาหาร สบู่ และเทียนไข เนื้อไม้แข็งหนักใช้ทำเครื่องมือกสิกรรม ฟืน และถ่าน"
+      },
+      {
+        id: 49,
+        commonName: "รวงผึ้ง",
+        localName: "รวงผึ้ง",
+        scientificName: "Schoutenia glomerata king subsp. Paregrina (Craib) Roekm. Et Martono",
+        family: "Tiliaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 50,
+        commonName: "พะยอม",
+        localName: "พะยอม",
+        scientificName: "Shorea roxburghii G.Don",
+        family: "Dipterocarpaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 51,
+        commonName: "ยางกราด",
+        localName: "สะแบง",
+        scientificName: "Dipterocarpus intricatus Dyer",
+        family: "Dipterocarpaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 52,
+        commonName: "ติ้วขาว",
+        localName: "ติ้ว",
+        scientificName: "Cratoxylum formosum (Jacq.) Benth. & Hook.f. ex Dyer",
+        family: "Hypericaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 53,
+        commonName: "มะกอก",
+        localName: "มะกอก",
+        scientificName: "Spondias pinnata (L.f.) Kurz",
+        family: "Anacardiaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 54,
+        commonName: "ผักหวานป่า",
+        localName: "ผักหวาน",
+        scientificName: "Melientha sauvis Pierrre",
+        family: "Opiliaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 55,
+        commonName: "เพ็ก",
+        localName: "เพ็ก",
+        scientificName: "Arundinaria pusilia",
+        family: "Poaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 56,
+        commonName: "ยางนา",
+        localName: "ยางนา",
+        scientificName: "Dipterocarpus alatus Roxb.",
+        family: "Dipterocarpaceae",
+        stem: "ไม้ยืนต้นขนาดใหญ่ ไม่ผลัดใบ สูง 30–40 เมตร ลำต้นเปลาตรง โคนต้นเป็นพูพอน เปลือกเรียบหนาสีเทาปนขาว เรือนยอดเป็นพุ่มกลมทึบ",
+        leaf: "ใบเดี่ยว เรียงสลับ รูปไข่แกมรูปใบหอก กว้าง 8–15 เซนติเมตร ยาว 20–35 เซนติเมตร ปลายใบสอบเรียว โคนใบมน เนื้อใบหนา กาบหุ้มยอดมีขนสีน้ำตาล",
+        flower: "ดอกสีชมพู ออกเป็นช่อสั้นๆ ตามซอกใบและปลายกิ่ง กลีบเลี้ยงโคนเชื่อมติดกันเป็นรูปถ้วยมีครีบตามยาว 5 ครีบ กลีบดอก 5 กลีบบิดเวียนแบบกังหัน",
+        fruit: "ผลทรงกลม เส้นผ่านศูนย์กลาง 2.5–3 เซนติเมตร มีครีบตามยาว 5 ครีบ มีปีกยาว 2 ปีก (ยาว 10–12 เซนติเมตร) และปีกสั้น 3 ปีก",
+        origin: "เอเชียใต้และเอเชียตะวันออกเฉียงใต้",
+        distribution: "บังกลาเทศ เมียนมา ไทย ลาว กัมพูชา เวียดนาม มาเลเซีย และฟิลิปปินส์ ในไทยพบตามป่าดิบและที่ราบชุ่มชื้นใกล้ลำน้ำ",
+        propagation: "เพาะเมล็ด",
+        uses: "เนื้อไม้ใช้ในการก่อสร้างบ้านเรือน ฝา พื้น เครื่องเรือน และไม้อัด น้ำมันยางใช้ทาไม้ ยาแนวเรือ ทำไต้จุดไฟ และมีสรรพคุณทางสมุนไพร"
+      },
+      {
+        id: 57,
+        commonName: "ติ้วเกลี้ยง",
+        localName: "ติ้วแดง",
+        scientificName: "Cratoxylum cochinchinense (Lour.) Bl.",
+        family: "Hypericaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 58,
+        commonName: "ปีบ",
+        localName: "ก้านของ",
+        scientificName: "Millingtonia hortensis Linn.f.",
+        family: "Bignoniaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 59,
+        commonName: "โมกเครือ",
+        localName: "โมกเครือ",
+        scientificName: "Aganosma marginata (Roxb.) G. Don",
+        family: "Apocynaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 60,
+        commonName: "พญาสัตบรรณ",
+        localName: "ตีนเป็ด",
+        scientificName: "Alstonia scholaris (L.) R. Br.",
+        family: "Apocynaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 61,
+        commonName: "กระถินณรงค์",
+        localName: "กระถินณรงค์",
+        scientificName: "Acacia auriculiformis A.Cunn. ex Benth.",
+        family: "Fabaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 62,
+        commonName: "แค",
+        localName: "แคบ้าน",
+        scientificName: "Sesbania grandiflora (L.) Desv.",
+        family: "Fabaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 63,
+        commonName: "แคนา",
+        localName: "แคนา",
+        scientificName: "Dolichandrone serrulata (DC.) Seem.",
+        family: "Bignoniaceae",
+        stem: "ไม้ยืนต้นผลัดใบขนาดเล็กถึงขนาดกลาง สูง 10–20 เมตร ลำต้นตรง เปลือกต้นสีน้ำตาลอ่อนอมเทา ค่อนข้างเรียบหรือล่อนเป็นเกล็ดเล็กน้อย",
+        leaf: "ใบประกอบแบบขนนกชั้นเดียวปลายคี่ เรียงตรงข้าม ใบย่อย 3–5 คู่ รูปรีหรือรูปไข่กลับ ยาว 5–16 เซนติเมตร โคนใบเบี้ยว ขอบใบหยักซี่ฟันตื้นๆ",
+        flower: "ช่อดอกแบบช่อกระจะสั้นออกตามปลายกิ่ง ดอกขนาดใหญ่รูปแตรสีขาว หลอดกลีบดอกยาว 6–10 เซนติเมตร ปลายบานแยกเป็น 5 แฉกขอบย่น บานตอนกลางคืนและร่วงตอนเช้า",
+        fruit: "ผลเป็นฝักแบนเรียวยาว รูปขอบขนานและบิดเป็นเกลียว ยาว 40–85 เซนติเมตร เมื่อแก่แตกเป็น 2 ซีก เมล็ดรูปสี่เหลี่ยมมีปีกบางใส",
+        origin: "",
+        distribution: "บังกลาเทศ เมียนมา ลาว และเวียดนาม ในไทยพบตามป่าเบญจพรรณ ชายทุ่ง และหัวไร่ปลายนา",
+        propagation: "เพาะเมล็ด และปักชำราก",
+        uses: "ดอกนำมาลวกหรือต้มรับประทานคู่กับน้ำพริก แกงส้ม หรือผัด ปลูกเป็นไม้ประดับและให้ร่มเงา ดอก เปลือก และรากมีสรรพคุณทางสมุนไพร"
+      },
+      {
+        id: 64,
+        commonName: "ทองกวาว",
+        localName: "จาน",
+        scientificName: "Butea monosperma (Lam.) Taub.",
+        family: "Fabaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 65,
+        commonName: "ตะขบป่า",
+        localName: "หมากเบน",
+        scientificName: "Flacourtia indica (Burm. f.) Merr.",
+        family: "Salicaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 66,
+        commonName: "นมควาย",
+        localName: "หมากผีผ่วน",
+        scientificName: "Uvaria hahinii sincl.",
+        family: "Annonaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 67,
+        commonName: "นมน้อย",
+        localName: "หมากต้องแล่ง",
+        scientificName: "Polyalthia evecta (Pierre) Finet & Gagnep.",
+        family: "Annonaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 68,
+        commonName: "พะยูงไหหลำ",
+        localName: "พะยูงไหหลำ",
+        scientificName: "Dalbergia odorifera T.chen",
+        family: "Fabaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 69,
+        commonName: "หางนกยูง",
+        localName: "หางนกยูง",
+        scientificName: "Caesalpinia pulcherrima (L.) Sw.",
+        family: "Fabaceae",
+        stem: "ไม้พุ่ม สูง 1–5 เมตร ทรงพุ่มกลม เปลือกต้นสีน้ำตาล ลำต้นเกลี้ยงหรือมีหนามเล็กๆ ตามกิ่ง",
+        leaf: "ใบประกอบแบบขนนกสองชั้น เรียงสลับ ใบย่อย 6–12 คู่ รูปขอบขนานหรือรูปไข่กลับ ปลายมนหรือเว้าตื้น โคนใบเบี้ยว",
+        flower: "ช่อดอกแบบช่อเชิงหลั่นออกตามซอกใบและปลายกิ่ง ดอกมีหลายสีตามสายพันธุ์ เช่น แดง ส้ม เหลือง ชมพู กลีบดอก 5 กลีบขอบยับย่น เกสรเพศผู้ 10 อันยื่นยาว",
+        fruit: "ผลเป็นฝักแบน กว้าง 1.5–2 เซนติเมตร ยาว 10–12 เซนติเมตร เมื่อแก่แห้งแตกออก มีเมล็ด 8–10 เมล็ด",
+        origin: "อเมริกากลาง อเมริกาใต้ และหมู่เกาะเวสต์อินดีส",
+        distribution: "ปลูกกระจายทั่วไปในเขตร้อน ในประเทศไทยพบได้ทุกภาค",
+        propagation: "เพาะเมล็ด และตอนกิ่ง",
+        uses: "นิยมปลูกเป็นไม้ดอกไม้ประดับ ดอกใช้บูชาพระ รากและดอกมีสรรพคุณทางยาสมุนไพร"
+      },
+      {
+        id: 70,
+        commonName: "เสม็ดแดง",
+        localName: "เม็ก",
+        scientificName: "Syzygium gratum (Wight) S.N.Mitra var. Gratum",
+        family: "Myrtaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      },
+      {
+        id: 71,
+        commonName: "กระโดน",
+        localName: "กระโดน",
+        scientificName: "Careya sphaerica Roxb.",
+        family: "Lecythidaceae",
+        stem: "",
+        leaf: "",
+        flower: "",
+        fruit: "",
+        origin: "",
+        distribution: "",
+        propagation: "",
+        uses: ""
+      }
+    ];
+
+    const STORAGE_KEY_EDITS = "ban_duea_plants_edits_v1";
+    const STORAGE_KEY_PHOTOS = "ban_duea_plants_photos_v1";
+    const STORAGE_KEY_BASE_URL = "ban_duea_plants_baseurl_v1";
+
+    // In-memory state (with best-effort localStorage sync)
+    const state = {
+      plants: INITIAL_PLANTS.map((p) => ({ ...p })),
+      photosByPlant: {},
+      baseUrl: "",
+      searchQuery: "",
+      familyFilter: "ALL",
+      sortField: "id",
+      sortDir: "asc",
+      activePlantId: null,
+      activePhotoIndex: 0,
+      isEditing: false
+    };
+
+    function safeLoadStorage() {
+      try {
+        const savedBase = localStorage.getItem(STORAGE_KEY_BASE_URL);
+        if (savedBase) {
+          state.baseUrl = savedBase;
+        }
+        const savedEdits = localStorage.getItem(STORAGE_KEY_EDITS);
+        if (savedEdits) {
+          const parsedEdits = JSON.parse(savedEdits);
+          if (parsedEdits && typeof parsedEdits === "object") {
+            state.plants = state.plants.map((plant) => {
+              const edit = parsedEdits[plant.id];
+              return edit ? { ...plant, ...edit, id: plant.id } : plant;
+            });
+          }
+        }
+        const savedPhotos = localStorage.getItem(STORAGE_KEY_PHOTOS);
+        if (savedPhotos) {
+          const parsedPhotos = JSON.parse(savedPhotos);
+          if (parsedPhotos && typeof parsedPhotos === "object") {
+            state.photosByPlant = parsedPhotos;
+          }
+        }
+      } catch (_) {
+        // Sandbox or private browsing: keep in-memory state
+      }
+    }
+
+    function safeSaveEdits() {
+      try {
+        const map = {};
+        state.plants.forEach((p) => {
+          map[p.id] = {
+            commonName: p.commonName,
+            localName: p.localName,
+            scientificName: p.scientificName,
+            family: p.family,
+            stem: p.stem,
+            leaf: p.leaf,
+            flower: p.flower,
+            fruit: p.fruit,
+            origin: p.origin,
+            distribution: p.distribution,
+            propagation: p.propagation,
+            uses: p.uses
+          };
+        });
+        localStorage.setItem(STORAGE_KEY_EDITS, JSON.stringify(map));
+      } catch (_) {}
+    }
+
+    function safeSavePhotos() {
+      try {
+        localStorage.setItem(STORAGE_KEY_PHOTOS, JSON.stringify(state.photosByPlant));
+      } catch (_) {}
+    }
+
+    function safeSaveBaseUrl(val) {
+      state.baseUrl = val.trim();
+      try {
+        localStorage.setItem(STORAGE_KEY_BASE_URL, state.baseUrl);
+      } catch (_) {}
+    }
+
+    function padPlantId(id) {
+      return String(id).padStart(2, "0");
+    }
+
+    function getEffectiveBaseUrl() {
+      if (state.baseUrl) {
+        return state.baseUrl.replace(/#.*$/, "");
+      }
+      const loc = window.location.href.split("#")[0];
+      return loc;
+    }
+
+    function getPlantUrl(id) {
+      return `${getEffectiveBaseUrl()}#plant-${padPlantId(id)}`;
+    }
+
+    function parsePlantIdFromLocation() {
+      // Check hash first: #plant-01, #plant-1, #1
+      const rawHash = (window.location.hash || "").replace(/^#\/?/, "").trim();
+      if (rawHash) {
+        const match = rawHash.match(/^(?:plant[-=/]?)?(\d{1,2})$/i);
+        if (match) {
+          const num = parseInt(match[1], 10);
+          if (num >= 1 && num <= 71) return num;
+        }
+      }
+      // Also support ?plant=1 query parameter
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const q = params.get("plant");
+        if (q) {
+          const num = parseInt(q, 10);
+          if (num >= 1 && num <= 71) return num;
+        }
+      } catch (_) {}
+      return null;
+    }
+
+    function navigateToPlant(id) {
+      state.activePlantId = id;
+      state.activePhotoIndex = 0;
+      state.isEditing = false;
+      const targetHash = `plant-${padPlantId(id)}`;
+      if (window.location.hash !== `#${targetHash}`) {
+        window.location.hash = targetHash;
+      } else {
+        renderApp();
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function navigateToDirectory() {
+      state.activePlantId = null;
+      state.isEditing = false;
+      if (window.location.hash) {
+        try {
+          history.pushState("", document.title, window.location.pathname + window.location.search);
+        } catch (_) {
+          window.location.hash = "";
+        }
+      }
+      renderApp();
+    }
+
+    function escapeHtml(str) {
+      return String(str || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    async function copyTextWithButtonFeedback(text, btnEl, originalLabel) {
+      let copied = false;
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(text);
+          copied = true;
+        }
+      } catch (_) {}
+
+      if (!copied) {
+        try {
+          const temp = document.createElement("textarea");
+          temp.value = text;
+          temp.setAttribute("readonly", "");
+          temp.style.position = "fixed";
+          temp.style.opacity = "0";
+          document.body.appendChild(temp);
+          temp.select();
+          copied = document.execCommand("copy");
+          document.body.removeChild(temp);
+        } catch (_) {}
+      }
+
+      if (btnEl) {
+        btnEl.textContent = copied ? "คัดลอกลิงก์แล้ว ✓" : "คัดลอกแล้ว ✓";
+        btnEl.disabled = true;
+        setTimeout(() => {
+          btnEl.textContent = originalLabel;
+          btnEl.disabled = false;
+        }, 1600);
+      }
+    }
+
+    // Compress uploaded tree photo so multiple real photos store cleanly in browser
+    function readAndCompressImage(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onerror = () => reject(new Error("อ่านไฟล์รูปภาพไม่สำเร็จ"));
+        reader.onload = (ev) => {
+          const img = new Image();
+          img.onerror = () => reject(new Error("โหลดรูปภาพไม่สำเร็จ"));
+          img.onload = () => {
+            const maxDim = 1000;
+            let { width, height } = img;
+            if (width > maxDim || height > maxDim) {
+              if (width >= height) {
+                height = Math.round((height * maxDim) / width);
+                width = maxDim;
+              } else {
+                width = Math.round((width * maxDim) / height);
+                height = maxDim;
+              }
+            }
+            const canvas = document.createElement("canvas");
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, width, height);
+            const dataUrl = canvas.toDataURL("image/jpeg", 0.82);
+            resolve({
+              dataUrl,
+              name: file.name || "ภาพต้นไม้"
+            });
+          };
+          img.src = ev.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function getUniqueFamilies() {
+      const set = new Set();
+      state.plants.forEach((p) => {
+        if (p.family) set.add(p.family.trim());
+      });
+      return Array.from(set).sort((a, b) => a.localeCompare(b));
+    }
+
+    function getFilteredAndSortedPlants() {
+      const q = state.searchQuery.trim().toLowerCase();
+      const fam = state.familyFilter;
+
+      const filtered = state.plants.filter((p) => {
+        if (fam !== "ALL" && p.family !== fam) return false;
+        if (!q) return true;
+        const idStr = String(p.id);
+        const padStr = padPlantId(p.id);
+        return (
+          idStr.includes(q) ||
+          padStr.includes(q) ||
+          p.commonName.toLowerCase().includes(q) ||
+          p.localName.toLowerCase().includes(q) ||
+          p.scientificName.toLowerCase().includes(q) ||
+          p.family.toLowerCase().includes(q)
+        );
+      });
+
+      filtered.sort((a, b) => {
+        let cmp = 0;
+        if (state.sortField === "id") {
+          cmp = a.id - b.id;
+        } else {
+          cmp = String(a[state.sortField] || "").localeCompare(
+            String(b[state.sortField] || ""),
+            "th"
+          );
+        }
+        return state.sortDir === "asc" ? cmp : -cmp;
+      });
+
+      return filtered;
+    }
+
+    function renderSortIndicator(field) {
+      if (state.sortField !== field) return "";
+      return state.sortDir === "asc" ? " ▲" : " ▼";
+    }
+
+    function renderDirectoryView(root, headerRight) {
+      headerRight.innerHTML = "";
+      const families = getUniqueFamilies();
+      const rows = getFilteredAndSortedPlants();
+
+      const familyOptionsHtml = families
+        .map(
+          (f) =>
+            `<option value="${escapeHtml(f)}" ${
+              state.familyFilter === f ? "selected" : ""
+            }>${escapeHtml(f)}</option>`
+        )
+        .join("");
+
+      const tableRowsHtml =
+        rows.length === 0
+          ? `<tr><td colspan="6"><div class="empty-state">ไม่พบพรรณไม้ที่ตรงกับคำค้นหา — กรุณาล้างตัวกรองหรือเปลี่ยนคำค้นใหม่</div></td></tr>`
+          : rows
+              .map((p) => {
+                return `
+                  <tr class="plant-row" data-open-plant="${p.id}">
+                    <td class="col-num">${p.id}.</td>
+                    <td><strong>${escapeHtml(p.commonName)}</strong></td>
+                    <td>${escapeHtml(p.localName)}</td>
+                    <td><span class="sci-text">${escapeHtml(p.scientificName)}</span></td>
+                    <td>${escapeHtml(p.family)}</td>
+                    <td>
+                      <div class="row-actions">
+                        <button type="button" class="btn btn-secondary btn-sm" data-copy-plant="${p.id}">คัดลอกลิงก์</button>
+                        <button type="button" class="btn btn-primary btn-sm" data-open-plant="${p.id}">ดูข้อมูลพืช</button>
+                      </div>
+                    </td>
+                  </tr>
+                `;
+              })
+              .join("");
+
+      root.innerHTML = `
+        <section class="panel base-url-bar" aria-label="ตั้งค่าลิงก์หลักของเว็บไซต์สำหรับทำคิวอาร์โค้ด">
+          <label for="baseUrlInput" class="base-url-label">URL หลักสำหรับแยกลิงก์แต่ละพืช:</label>
+          <div class="base-url-input-wrap">
+            <input
+              id="baseUrlInput"
+              type="url"
+              class="input"
+              placeholder="เช่น about:invalid#zPythonSafez (เว้นว่างเพื่อใช้ URL ปัจจุบัน)"
+              value="${escapeHtml(state.baseUrl)}"
+            >
+          </div>
+          <p class="base-url-hint">พืชแต่ละชนิดมีลิงก์แยกเฉพาะตัวในรูปแบบ <code>#plant-01</code> ถึง <code>#plant-71</code> เมื่อนำไฟล์เว็บไปขึ้นโฮสต์จริง สามารถวาง URL เว็บหลักที่นี่เพื่อคัดลอกลิงก์แต่ละต้นไปสร้าง QR Code ติดป้ายต้นไม้จริงได้ทันที</p>
+        </section>
+
+        <section class="panel" aria-label="ตารางรายชื่อพรรณไม้จากการสำรวจในพื้นที่ปกปัก">
+          <div class="toolbar">
+            <div class="search-wrap">
+              <input
+                id="searchInput"
+                type="search"
+                class="input"
+                placeholder="ค้นหาลำดับ ชื่อสามัญ ชื่อท้องถิ่น ชื่อวิทยาศาสตร์ หรือวงศ์..."
+                aria-label="ค้นหาพรรณไม้"
+                value="${escapeHtml(state.searchQuery)}"
+              >
+            </div>
+            <div class="filter-wrap">
+              <select id="familySelect" class="select" aria-label="กรองตามวงศ์พรรณไม้">
+                <option value="ALL">ทุกวงศ์ (All Families)</option>
+                ${familyOptionsHtml}
+              </select>
+            </div>
+            ${
+              state.searchQuery || state.familyFilter !== "ALL"
+                ? `<button type="button" id="clearFilterBtn" class="btn btn-secondary btn-sm">ล้างตัวกรอง</button>`
+                : ""
+            }
+          </div>
+
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th class="col-num sortable" data-sort="id">ลำดับ${renderSortIndicator("id")}</th>
+                  <th class="sortable" data-sort="commonName">ชื่อสามัญ${renderSortIndicator("commonName")}</th>
+                  <th class="sortable" data-sort="localName">ชื่อท้องถิ่น${renderSortIndicator("localName")}</th>
+                  <th class="sortable" data-sort="scientificName">ชื่อวิทยาศาสตร์${renderSortIndicator("scientificName")}</th>
+                  <th class="sortable" data-sort="family">วงศ์${renderSortIndicator("family")}</th>
+                  <th style="text-align:right;">ลิงก์แยกพืช / รายละเอียด</th>
+                </tr>
+              </thead>
+              <tbody id="plantTableBody">
+                ${tableRowsHtml}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      `;
+
+      const baseUrlInput = document.getElementById("baseUrlInput");
+      baseUrlInput.addEventListener("input", (e) => {
+        safeSaveBaseUrl(e.target.value);
+      });
+
+      const searchInput = document.getElementById("searchInput");
+      searchInput.addEventListener("input", (e) => {
+        const pos = e.target.selectionStart;
+        state.searchQuery = e.target.value;
+        renderDirectoryView(root, headerRight);
+        const nextInput = document.getElementById("searchInput");
+        if (nextInput) {
+          nextInput.focus();
+          try {
+            nextInput.setSelectionRange(pos, pos);
+          } catch (_) {}
+        }
+      });
+
+      const familySelect = document.getElementById("familySelect");
+      familySelect.addEventListener("change", (e) => {
+        state.familyFilter = e.target.value;
+        renderDirectoryView(root, headerRight);
+      });
+
+      const clearBtn = document.getElementById("clearFilterBtn");
+      if (clearBtn) {
+        clearBtn.addEventListener("click", () => {
+          state.searchQuery = "";
+          state.familyFilter = "ALL";
+          renderDirectoryView(root, headerRight);
+        });
+      }
+
+      root.querySelectorAll("th.sortable").forEach((th) => {
+        th.addEventListener("click", () => {
+          const field = th.getAttribute("data-sort");
+          if (state.sortField === field) {
+            state.sortDir = state.sortDir === "asc" ? "desc" : "asc";
+          } else {
+            state.sortField = field;
+            state.sortDir = "asc";
+          }
+          renderDirectoryView(root, headerRight);
+        });
+      });
+
+      root.querySelectorAll("[data-copy-plant]").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const id = parseInt(btn.getAttribute("data-copy-plant"), 10);
+          copyTextWithButtonFeedback(getPlantUrl(id), btn, "คัดลอกลิงก์");
+        });
+      });
+
+      root.querySelectorAll("tr.plant-row").forEach((row) => {
+        row.addEventListener("click", (e) => {
+          if (e.target.closest("[data-copy-plant]")) return;
+          const id = parseInt(row.getAttribute("data-open-plant"), 10);
+          navigateToPlant(id);
+        });
+      });
+    }
+
+    function formatFieldText(val) {
+      const trimmed = String(val || "").trim();
+      if (!trimmed) {
+        return `<span class="unfilled-text">ยังไม่ได้ระบุข้อมูล (กดปุ่ม "แก้ไขข้อมูล" เพื่อบันทึกเพิ่มเติม)</span>`;
+      }
+      return escapeHtml(trimmed);
+    }
+
+    function renderPlantDetailView(root, headerRight, plant) {
+      headerRight.innerHTML = `
+        <button type="button" class="btn btn-secondary btn-sm" id="topBackBtn">← รายชื่อพรรณไม้ทั้งหมด</button>
+      `;
+      document.getElementById("topBackBtn").addEventListener("click", navigateToDirectory);
+
+      const photos = state.photosByPlant[plant.id] || [];
+      if (state.activePhotoIndex >= photos.length) {
+        state.activePhotoIndex = Math.max(0, photos.length - 1);
+      }
+
+      const prevId = plant.id > 1 ? plant.id - 1 : null;
+      const nextId = plant.id < state.plants.length ? plant.id + 1 : null;
+      const plantUrl = getPlantUrl(plant.id);
+
+      const photoContentHtml =
+        photos.length === 0
+          ? `<div class="photo-empty">ยังไม่มีรูปภาพต้นไม้จริงของพรรณไม้นี้ — กดปุ่ม <strong>"+ เพิ่มรูปภาพต้นไม้"</strong> เพื่อเลือกรูปถ่ายหรือถ่ายภาพต้นไม้จริงมาแสดงในหน้านี้</div>`
+          : `
+            <div class="photo-stage">
+              <img src="${photos[state.activePhotoIndex].dataUrl}" alt="ภาพถ่ายต้น${escapeHtml(plant.commonName)} รูปที่ ${state.activePhotoIndex + 1}">
+              <div class="photo-stage-actions">
+                <button type="button" class="btn btn-danger btn-sm" id="deleteActivePhotoBtn">ลบรูปนี้</button>
+              </div>
+            </div>
+            ${
+              photos.length > 1
+                ? `<div class="photo-thumbs">
+                    ${photos
+                      .map(
+                        (ph, idx) => `
+                          <button type="button" class="thumb-btn ${
+                            idx === state.activePhotoIndex ? "active" : ""
+                          }" data-photo-idx="${idx}" aria-label="ดูรูปที่ ${idx + 1}">
+                            <img src="${ph.dataUrl}" alt="">
+                          </button>
+                        `
+                      )
+                      .join("")}
+                  </div>`
+                : ""
+            }
+          `;
+
+      const detailBodyHtml = state.isEditing
+        ? `
+          <form id="editPlantForm" class="edit-form">
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="f_scientificName">ชื่อวิทยาศาสตร์</label>
+                <input id="f_scientificName" class="input" type="text" required value="${escapeHtml(plant.scientificName)}">
+              </div>
+              <div class="form-field">
+                <label for="f_family">ชื่อวงศ์</label>
+                <input id="f_family" class="input" type="text" required value="${escapeHtml(plant.family)}">
+              </div>
+              <div class="form-field">
+                <label for="f_localName">ชื่อท้องถิ่น</label>
+                <input id="f_localName" class="input" type="text" required value="${escapeHtml(plant.localName)}">
+              </div>
+              <div class="form-field">
+                <label for="f_commonName">ชื่อสามัญ</label>
+                <input id="f_commonName" class="input" type="text" required value="${escapeHtml(plant.commonName)}">
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="f_stem">ลักษณะทางพฤกษศาสตร์ — ลำต้น</label>
+              <textarea id="f_stem" class="textarea" placeholder="ระบุลักษณะลำต้น ความสูง เรือนยอด เปลือกลำต้น...">${escapeHtml(plant.stem)}</textarea>
+            </div>
+            <div class="form-field">
+              <label for="f_leaf">ลักษณะทางพฤกษศาสตร์ — ใบ</label>
+              <textarea id="f_leaf" class="textarea" placeholder="ระบุชนิดของใบ การเรียงตัว รูปร่าง ขนาด...">${escapeHtml(plant.leaf)}</textarea>
+            </div>
+            <div class="form-field">
+              <label for="f_flower">ลักษณะทางพฤกษศาสตร์ — ดอก</label>
+              <textarea id="f_flower" class="textarea" placeholder="ระบุลักษณะช่อดอก สีดอก กลีบดอก...">${escapeHtml(plant.flower)}</textarea>
+            </div>
+            <div class="form-field">
+              <label for="f_fruit">ลักษณะทางพฤกษศาสตร์ — ผล</label>
+              <textarea id="f_fruit" class="textarea" placeholder="ระบุลักษณะผล สีผล และเมล็ด...">${escapeHtml(plant.fruit)}</textarea>
+            </div>
+            <div class="form-field">
+              <label for="f_origin">ถิ่นกำเนิด</label>
+              <input id="f_origin" class="input" type="text" placeholder="ระบุถิ่นกำเนิด..." value="${escapeHtml(plant.origin)}">
+            </div>
+            <div class="form-field">
+              <label for="f_distribution">การกระจายพันธุ์</label>
+              <textarea id="f_distribution" class="textarea" placeholder="ระบุเขตการกระจายพันธุ์และสภาพป่าที่พบ...">${escapeHtml(plant.distribution)}</textarea>
+            </div>
+            <div class="form-field">
+              <label for="f_propagation">การปลูกและการขยายพันธุ์</label>
+              <input id="f_propagation" class="input" type="text" placeholder="เช่น เพาะเมล็ด - ตอนกิ่ง" value="${escapeHtml(plant.propagation)}">
+            </div>
+            <div class="form-field">
+              <label for="f_uses">การใช้ประโยชน์</label>
+              <textarea id="f_uses" class="textarea" placeholder="ระบุการใช้ประโยชน์ สรรพคุณ หรือการใช้เนื้อไม้...">${escapeHtml(plant.uses)}</textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn btn-secondary" id="cancelEditBtn">ยกเลิก</button>
+              <button type="submit" class="btn btn-primary">บันทึกข้อมูล</button>
+            </div>
+          </form>
+        `
+        : `
+          <div class="kv-list">
+            <div class="kv-line">
+              <span class="kv-label">ชื่อวิทยาศาสตร์</span>
+              <span class="sci-text">${escapeHtml(plant.scientificName)}</span>
+            </div>
+            <div class="kv-line">
+              <span class="kv-label">ชื่อวงศ์</span>
+              <span class="kv-val-upper">${escapeHtml(plant.family)}</span>
+            </div>
+            <div class="kv-line">
+              <span class="kv-label">ชื่อท้องถิ่น</span>
+              <span>${escapeHtml(plant.localName)}</span>
+            </div>
+            <div class="kv-line">
+              <span class="kv-label">ชื่อสามัญ</span>
+              <span>${escapeHtml(plant.commonName)}</span>
+            </div>
+          </div>
+
+          <div class="section-block">
+            <h3 class="section-heading">ลักษณะทางพฤกษศาสตร์</h3>
+            <ul class="pink-bullets">
+              <li><strong>ลำต้น</strong> ${formatFieldText(plant.stem)}</li>
+              <li><strong>ใบ</strong> ${formatFieldText(plant.leaf)}</li>
+              <li><strong>ดอก</strong> ${formatFieldText(plant.flower)}</li>
+              <li><strong>ผล</strong> ${formatFieldText(plant.fruit)}</li>
+            </ul>
+          </div>
+
+          <div class="section-block">
+            <h3 class="section-heading">ถิ่นกำเนิด</h3>
+            <ul class="pink-bullets">
+              <li>${formatFieldText(plant.origin)}</li>
+            </ul>
+          </div>
+
+          <div class="section-block">
+            <h3 class="section-heading">การกระจายพันธุ์</h3>
+            <ul class="pink-bullets">
+              <li>${formatFieldText(plant.distribution)}</li>
+            </ul>
+          </div>
+
+          <div class="section-block">
+            <h3 class="section-heading">การปลูกและการขยายพันธุ์</h3>
+            <ul class="pink-bullets">
+              <li>${formatFieldText(plant.propagation)}</li>
+            </ul>
+          </div>
+
+          <div class="inline-section-line">
+            <span class="kv-label">การใช้ประโยชน์</span>
+            <span>${formatFieldText(plant.uses)}</span>
+          </div>
+        `;
+
+      root.innerHTML = `
+        <div class="detail-wrapper">
+          <div class="detail-topbar">
+            <button type="button" class="btn btn-secondary btn-sm" id="backListBtn">← กลับหน้ารวมพรรณไม้</button>
+            <div class="nav-prev-next">
+              <button type="button" class="btn btn-secondary btn-sm" id="prevPlantBtn" ${prevId ? "" : "disabled"}>‹ ชนิดก่อนหน้า</button>
+              <button type="button" class="btn btn-secondary btn-sm" id="nextPlantBtn" ${nextId ? "" : "disabled"}>ชนิดถัดไป ›</button>
+            </div>
+          </div>
+
+          <div class="plant-link-box" aria-label="ลิงก์เฉพาะของพืชชนิดนี้">
+            <span class="plant-link-label">ลิงก์เฉพาะต้นนี้ (#${padPlantId(plant.id)}):</span>
+            <div class="plant-link-code" id="currentPlantUrlText">${escapeHtml(plantUrl)}</div>
+            <button type="button" class="btn btn-primary btn-sm" id="copyCurrentUrlBtn">คัดลอกลิงก์พืชนี้</button>
+          </div>
+
+          <article class="pink-sheet">
+            <div class="sheet-header">
+              <h2 class="sheet-title">ต้น${escapeHtml(plant.commonName)}</h2>
+              ${
+                !state.isEditing
+                  ? `<button type="button" class="btn btn-secondary btn-sm" id="toggleEditBtn">แก้ไขข้อมูล</button>`
+                  : ""
+              }
+            </div>
+
+            <div class="sheet-meta">
+              <span class="meta-item">ลำดับที่ ${plant.id}</span>
+              <span class="meta-item">พรรณไม้ในพื้นที่ปกปัก เขตตำบลบ้านเดื่อและตำบลหนองข่า</span>
+            </div>
+
+            <section class="photo-section" aria-label="ภาพถ่ายต้นไม้จริง">
+              <div class="photo-header">
+                <h3 class="photo-heading">ภาพถ่ายต้นไม้จริง</h3>
+                <div>
+                  <input type="file" id="photoUploadInput" class="hidden-file-input" accept="image/*" multiple>
+                  <button type="button" class="btn btn-primary btn-sm" id="triggerPhotoUploadBtn">+ เพิ่มรูปภาพต้นไม้</button>
+                </div>
+              </div>
+              ${photoContentHtml}
+            </section>
+
+            ${detailBodyHtml}
+          </article>
+        </div>
+      `;
+
+      document.getElementById("backListBtn").addEventListener("click", navigateToDirectory);
+
+      const prevBtn = document.getElementById("prevPlantBtn");
+      if (prevBtn && prevId) {
+        prevBtn.addEventListener("click", () => navigateToPlant(prevId));
+      }
+
+      const nextBtn = document.getElementById("nextPlantBtn");
+      if (nextBtn && nextId) {
+        nextBtn.addEventListener("click", () => navigateToPlant(nextId));
+      }
+
+      const copyBtn = document.getElementById("copyCurrentUrlBtn");
+      copyBtn.addEventListener("click", () => {
+        copyTextWithButtonFeedback(plantUrl, copyBtn, "คัดลอกลิงก์พืชนี้");
+      });
+
+      // Photo Upload Handlers
+      const fileInput = document.getElementById("photoUploadInput");
+      document.getElementById("triggerPhotoUploadBtn").addEventListener("click", () => {
+        fileInput.click();
+      });
+
+      fileInput.addEventListener("change", async (e) => {
+        const files = Array.from(e.target.files || []);
+        if (!files.length) return;
+        const currentList = state.photosByPlant[plant.id]
+          ? [...state.photosByPlant[plant.id]]
+          : [];
+        for (const file of files) {
+          try {
+            const compressed = await readAndCompressImage(file);
+            currentList.push(compressed);
+          } catch (_) {}
+        }
+        state.photosByPlant[plant.id] = currentList;
+        state.activePhotoIndex = currentList.length - 1;
+        safeSavePhotos();
+        renderApp();
+      });
+
+      root.querySelectorAll("[data-photo-idx]").forEach((thumb) => {
+        thumb.addEventListener("click", () => {
+          state.activePhotoIndex = parseInt(thumb.getAttribute("data-photo-idx"), 10);
+          renderApp();
+        });
+      });
+
+      const deletePhotoBtn = document.getElementById("deleteActivePhotoBtn");
+      if (deletePhotoBtn) {
+        deletePhotoBtn.addEventListener("click", () => {
+          const list = [...(state.photosByPlant[plant.id] || [])];
+          list.splice(state.activePhotoIndex, 1);
+          state.photosByPlant[plant.id] = list;
+          state.activePhotoIndex = Math.max(0, state.activePhotoIndex - 1);
+          safeSavePhotos();
+          renderApp();
+        });
+      }
+
+      // Edit Handlers
+      const toggleEditBtn = document.getElementById("toggleEditBtn");
+      if (toggleEditBtn) {
+        toggleEditBtn.addEventListener("click", () => {
+          state.isEditing = true;
+          renderApp();
+        });
+      }
+
+      const cancelEditBtn = document.getElementById("cancelEditBtn");
+      if (cancelEditBtn) {
+        cancelEditBtn.addEventListener("click", () => {
+          state.isEditing = false;
+          renderApp();
+        });
+      }
+
+      const editForm = document.getElementById("editPlantForm");
+      if (editForm) {
+        editForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          plant.scientificName = document.getElementById("f_scientificName").value.trim() || plant.scientificName;
+          plant.family = document.getElementById("f_family").value.trim() || plant.family;
+          plant.localName = document.getElementById("f_localName").value.trim() || plant.localName;
+          plant.commonName = document.getElementById("f_commonName").value.trim() || plant.commonName;
+          plant.stem = document.getElementById("f_stem").value.trim();
+          plant.leaf = document.getElementById("f_leaf").value.trim();
+          plant.flower = document.getElementById("f_flower").value.trim();
+          plant.fruit = document.getElementById("f_fruit").value.trim();
+          plant.origin = document.getElementById("f_origin").value.trim();
+          plant.distribution = document.getElementById("f_distribution").value.trim();
+          plant.propagation = document.getElementById("f_propagation").value.trim();
+          plant.uses = document.getElementById("f_uses").value.trim();
+          safeSaveEdits();
+          state.isEditing = false;
+          renderApp();
+        });
+      }
+    }
+
+    function renderApp() {
+      const root = document.getElementById("appRoot");
+      const headerRight = document.getElementById("headerRightSlot");
+      if (!root) return;
+
+      if (state.activePlantId !== null) {
+        const plant = state.plants.find((p) => p.id === state.activePlantId);
+        if (plant) {
+          document.title = `ต้น${plant.commonName} (${plant.scientificName}) — ฐานข้อมูลพรรณไม้`;
+          renderPlantDetailView(root, headerRight, plant);
+          return;
+        }
+      }
+
+      document.title = "ฐานข้อมูลพรรณไม้ในพื้นที่ปกปัก — เขตตำบลบ้านเดื่อและตำบลหนองข่า";
+      renderDirectoryView(root, headerRight);
+    }
+
+    // Initialize routing & events
+    document.getElementById("homeBrandBtn").addEventListener("click", navigateToDirectory);
+
+    window.addEventListener("hashchange", () => {
+      const parsedId = parsePlantIdFromLocation();
+      state.activePlantId = parsedId;
+      state.activePhotoIndex = 0;
+      state.isEditing = false;
+      renderApp();
+    });
+
+    safeLoadStorage();
+    state.activePlantId = parsePlantIdFromLocation();
+    renderApp();
+  </script>
+</body>
+</html>
